@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="솔루션 상세 페이지">
+    <title>Solution Detail - DoteLine</title>
+
+    <!-- 본고딕 폰트 -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/components/Header/Header.css">
+    <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+    <link rel="stylesheet" href="/src/components/Loading/Loading.css">
+    <link rel="stylesheet" href="/src/pages/Solutions/SolutionDetail.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header Component -->
+        <div id="header-container"></div>
+
+        <!-- Main Content -->
+        <main class="detail-main">
+            <!-- Hero Section -->
+            <section class="detail-hero" id="heroSection">
+                <div class="detail-hero__overlay"></div>
+                <div class="detail-hero__content">
+                    <h1 class="detail-hero__title" id="heroTitle"></h1>
+                </div>
+            </section>
+
+            <!-- Second Hero Section -->
+            <section class="detail-second-hero">
+                <div class="detail-second-hero__container">
+                    <div class="detail-second-hero__image image-wrapper">
+                        <img id="secondHeroImage" src="" alt="Solution Image" />
+                    </div>
+                    <div class="detail-second-hero__content">
+                        <h2 class="detail-second-hero__title" id="secondHeroTitle"></h2>
+                        <p class="detail-second-hero__description" id="secondHeroDescription"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Section -->
+            <section class="detail-products">
+                <div class="detail-products__container">
+                    <h2 class="detail-products__heading" id="productsTitle">관련 제품</h2>
+
+                    <!-- Product Grid -->
+                    <div class="detail-products__grid" id="productsGrid">
+                        <!-- Products will be injected by JavaScript -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="detail-pagination" id="pagination" aria-label="제품 페이지네이션">
+                        <!-- Pagination buttons will be injected by JavaScript -->
+                    </nav>
+                </div>
+            </section>
+
+            <!-- Back to Solutions Button -->
+            <section class="detail-back">
+                <div class="detail-back__container">
+                    <a href="/src/pages/Solutions/SolutionsMain.html" class="detail-back__button">
+                        <div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                >
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path
+                                        fill="currentColor"
+                                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <span>솔루션 목록으로 돌아가기</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Component -->
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // 환경변수에서 EmailJS 설정 로드
+            window.EMAILJS_CONFIG = {
+                PUBLIC_KEY: '{{EMAILJS_PUBLIC_KEY}}',
+                SERVICE_ID: '{{EMAILJS_SERVICE_ID}}',
+                TEMPLATE_ID: '{{EMAILJS_TEMPLATE_ID}}'
+            };
+
+            // 디버깅: 설정 확인
+            console.log('✅ EmailJS 설정 완료:', {
+                PUBLIC_KEY: window.EMAILJS_CONFIG.PUBLIC_KEY ? '설정됨 (길이: ' + window.EMAILJS_CONFIG.PUBLIC_KEY.length + ')' : '❌ 미설정',
+                SERVICE_ID: window.EMAILJS_CONFIG.SERVICE_ID || '❌ 미설정',
+                TEMPLATE_ID: window.EMAILJS_CONFIG.TEMPLATE_ID || '❌ 미설정',
+                전체_값: window.EMAILJS_CONFIG
+            });
+
+            // EmailJS 초기화
+            if (window.EMAILJS_CONFIG.PUBLIC_KEY) {
+                emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
+                console.log('✅ EmailJS 초기화 완료');
+            } else {
+                console.error('❌ EmailJS PUBLIC_KEY가 없어서 초기화 실패');
+            }
+        })();
+    </script>
+
+    <!-- JavaScript -->
+    <script src="/src/components/Loading/Loading.js"></script>
+    <script src="/src/utils/loadComponent.js"></script>
+    <script src="/src/components/Header/Header.js"></script>
+    <script src="/src/data/SolutionData.js"></script>
+    <script src="/src/pages/Solutions/SolutionDetail.js"></script>
+</body>
+</html>

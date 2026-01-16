@@ -1,0 +1,110 @@
+/* ========================================
+   Solutions Main Page Styles
+   ======================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.6;
+}
+
+/* Main Container */
+.solutions-main {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+/* Hero Section */
+.solutions-hero {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('/resources/solutionpage/main-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    overflow: hidden;
+}
+
+.solutions-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.solutions-hero__title,
+.solutions-hero__subtitle {
+    position: relative;
+    z-index: 2;
+}
+
+.solutions-hero__title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.solutions-hero__subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Solutions Sections Container */
+.solutions-main .solution-section:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.solutions-main .solution-section:nth-child(even) {
+    background: radial-gradient(
+        ellipse at center,
+        #f8f9fa 0%,
+        #f8f9fa 30%,
+        #ffffff 70%
+    );
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .solutions-hero__title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .solutions-main {
+        padding-top: 60px;
+    }
+
+    .solutions-hero {
+        min-height: 60vh;
+    }
+
+    .solutions-hero__title {
+        font-size: 5.8vw;
+    }
+
+    .solutions-hero__subtitle {
+        font-size: 3.5vw;
+    }
+}

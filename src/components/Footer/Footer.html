@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="/src/components/Footer/Footer.css">
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3 class="footer-brand-title">DOTELINE</h3>
+        <p class="footer-brand-subtitle">프리미엄 LED 칩 솔루션</p>
+        <p class="footer-brand-info">
+          상호명: 주식회사 도트라인<br />
+          경기도 시흥시 광석천길 18, B115호(광석동, 광양프런티어밸리8차)<br />
+          사업자등록번호: 324-87-03618
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-section-title">전화번호</h3>
+        <a href="tel:010-5853-7033" class="footer-contact-phone">PH. 010-5853-7033</a>
+        <p class="footer-contact-hours">
+          월 - 토: 09:00 ~ 18:00<br />
+          (일요일휴무)
+        </p>
+        <a href="mailto:doteline@naver.com" class="footer-contact-email">doteline@naver.com</a>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-section-title">바로가기</h3>
+        <ul class="footer-links">
+          <li><a href="/info" class="footer-link">회사 소개</a></li>
+          <li><a href="/solution" class="footer-link">제품 솔루션</a></li>
+          <li><a href="/product" class="footer-link">제품</a></li>
+          <li><a href="#stores" class="footer-link">찾아 오시는 길</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p class="footer-copyright">&copy; 2025 DOTELINE. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/park.ga_01/?igsh=eTE3b3BpeWE2ZHNv#" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="NaverBlog">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.273 12.845 7.376 0H0v24h7.726l8.898-12.845L24 24V0h-7.727z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Footer - Smooth Scroll for Footer Links
+(function() {
+  const footerLinks = document.querySelectorAll('.footer-link[href^="#"]');
+
+  footerLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerHeight = 80;
+        const targetPosition = targetElement.offsetTop - headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+})();
+</script>

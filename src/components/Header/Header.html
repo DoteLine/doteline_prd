@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="/src/components/Header/Header.css">
+<header id="header" class="header">
+  <nav class="header-nav">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        DOTE LINE
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="header-menu desktop-menu">
+        <li><a href="/info" class="menu-link">회사 소개</a></li>
+
+        <!-- Products Dropdown -->
+        <li class="menu-item-dropdown">
+          <a href="/product" class="menu-link dropdown-trigger">
+            제품
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu" id="productsDropdown">
+            <a href="/product#category-rental" class="dropdown-item">
+              <span class="dropdown-item-title">임대</span>
+            </a>
+            <a href="/product#category-outdoor" class="dropdown-item">
+              <span class="dropdown-item-title">야외</span>
+            </a>
+            <a href="/product#category-indoor" class="dropdown-item">
+              <span class="dropdown-item-title">실내</span>
+            </a>
+            <a href="/product#category-cob" class="dropdown-item">
+              <span class="dropdown-item-title">COB LED</span>
+            </a>
+          </div>
+        </li>
+
+        <!-- Solutions Dropdown -->
+        <li class="menu-item-dropdown">
+          <a href="/solution" class="menu-link dropdown-trigger">
+            솔루션
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu" id="solutionsDropdown">
+            <!-- Solutions will be populated dynamically by JS -->
+          </div>
+        </li>
+      </ul>
+
+      <!-- Contact Badge Button -->
+      <button class="contact-badge-btn" id="contactBadgeBtn" aria-label="문의하기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>문의하기</span>
+      </button>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴">
+        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-menu-list">
+        <li><a href="/info" class="menu-link">회사 소개</a></li>
+
+        <!-- Mobile Products Dropdown -->
+        <li class="mobile-dropdown">
+          <a href="/product" class="menu-link mobile-dropdown-trigger" id="mobileProductsTrigger">
+            <span class="mobile-dropdown-text">제품</span>
+            <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="mobile-dropdown-menu" id="mobileProductsDropdown">
+            <li>
+              <a href="/product#category-rental" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">임대</span>
+              </a>
+            </li>
+            <li>
+              <a href="/product#category-outdoor" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">야외</span>
+              </a>
+            </li>
+            <li>
+              <a href="/product#category-indoor" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">실내</span>
+              </a>
+            </li>
+            <li>
+              <a href="/product#category-cob" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">COB LED</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Mobile Solutions Dropdown -->
+        <li class="mobile-dropdown">
+          <a href="/solution" class="menu-link mobile-dropdown-trigger" id="mobileSolutionsTrigger">
+            <span class="mobile-dropdown-text">솔루션</span>
+            <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="mobile-dropdown-menu" id="mobileSolutionsDropdown">
+            <!-- Solutions will be populated dynamically by JS -->
+          </ul>
+        </li>
+
+        <!-- Mobile Contact Button -->
+        <li class="mobile-contact-btn-wrapper">
+          <button class="mobile-contact-btn" id="mobileContactBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>문의하기</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contact Form Dropdown (Desktop) -->
+  <div class="contact-dropdown" id="contactDropdown">
+    <div class="contact-dropdown-header">
+      <h3 class="contact-dropdown-title">문의하기</h3>
+      <button class="contact-dropdown-close" id="contactDropdownClose" aria-label="닫기">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label for="contactName" class="form-label">이름 <span class="required">*</span></label>
+        <input type="text" id="contactName" name="name" class="form-input" placeholder="홍길동" required>
+      </div>
+      <div class="form-group">
+        <label for="contactPhone" class="form-label">전화번호 <span class="required">*</span></label>
+        <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="010-1234-5678" required>
+      </div>
+      <div class="form-group">
+        <label for="contactMessage" class="form-label">문의 내용 <span class="required">*</span></label>
+        <textarea id="contactMessage" name="message" class="form-textarea" placeholder="문의하실 내용을 입력해주세요 (최대 100자)" maxlength="100" rows="4" required></textarea>
+        <span class="char-count"><span id="charCount">0</span>/100</span>
+      </div>
+      <button type="submit" class="form-submit-btn" id="contactSubmitBtn">
+        <span class="btn-text">전송하기</span>
+        <span class="btn-loading">전송 중...</span>
+      </button>
+      <div class="form-message" id="formMessage"></div>
+    </form>
+  </div>
+
+  <!-- Contact Modal (Mobile) -->
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-modal-overlay" id="contactModalOverlay"></div>
+    <div class="contact-modal-content">
+      <div class="contact-modal-header">
+        <h3 class="contact-modal-title">문의하기</h3>
+        <button class="contact-modal-close" id="contactModalClose" aria-label="닫기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form class="contact-form" id="contactFormMobile">
+        <div class="form-group">
+          <label for="contactNameMobile" class="form-label">이름 <span class="required">*</span></label>
+          <input type="text" id="contactNameMobile" name="name" class="form-input" placeholder="홍길동" required>
+        </div>
+        <div class="form-group">
+          <label for="contactPhoneMobile" class="form-label">전화번호 <span class="required">*</span></label>
+          <input type="tel" id="contactPhoneMobile" name="phone" class="form-input" placeholder="010-1234-5678" required>
+        </div>
+        <div class="form-group">
+          <label for="contactMessageMobile" class="form-label">문의 내용 <span class="required">*</span></label>
+          <textarea id="contactMessageMobile" name="message" class="form-textarea" placeholder="문의하실 내용을 입력해주세요 (최대 100자)" maxlength="100" rows="4" required></textarea>
+          <span class="char-count"><span id="charCountMobile">0</span>/100</span>
+        </div>
+        <button type="submit" class="form-submit-btn" id="contactSubmitBtnMobile">
+          <span class="btn-text">전송하기</span>
+          <span class="btn-loading">전송 중...</span>
+        </button>
+        <div class="form-message" id="formMessageMobile"></div>
+      </form>
+    </div>
+  </div>
+</header>

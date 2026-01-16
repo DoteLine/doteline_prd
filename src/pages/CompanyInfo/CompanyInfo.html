@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 섹션 별 여백 추가 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사 소개 | DOTELINE</title>
+
+    <!-- 본고딕 폰트 -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/components/Header/Header.css">
+    <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+    <link rel="stylesheet" href="/src/components/Loading/Loading.css">
+    <link rel="stylesheet" href="/src/pages/CompanyInfo/CompanyInfo.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header Component -->
+        <div id="header-container"></div>
+
+        <!-- Company Info Main Content -->
+        <main class="company-info-main">
+            <!-- Hero Section -->
+            <section class="company-hero">
+                <div class="company-hero-content">
+                    <p class="company-hero-label">About Us</p>
+                    <h1 class="company-hero-title">
+                        <span class="hero-title-accent">프리미엄 LED도트 솔루션을 제공하는</span>
+                        <span class="hero-title-main">도트라인</span>
+                    </h1>
+                </div>
+            </section>
+
+            <!-- Image Sections -->
+            <section class="company-images-container">
+                <!-- Image 1 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info1.jpg" alt="회사 소개 1" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info2.jpg" alt="회사 소개 2" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info3.jpg" alt="회사 소개 3" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 4 -->
+                <div class="company-image-section section-animate slide-from-left">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info4.jpg" alt="회사 소개 4" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 5 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info5.jpg" alt="회사 소개 5" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 6 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info6.jpg" alt="회사 소개 6" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 7 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info7.jpg" alt="회사 소개 7" class="company-image" loading="lazy">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Component -->
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // 환경변수에서 EmailJS 설정 로드
+            window.EMAILJS_CONFIG = {
+                PUBLIC_KEY: '{{EMAILJS_PUBLIC_KEY}}',
+                SERVICE_ID: '{{EMAILJS_SERVICE_ID}}',
+                TEMPLATE_ID: '{{EMAILJS_TEMPLATE_ID}}'
+            };
+
+            // 디버깅: 설정 확인
+            console.log('✅ EmailJS 설정 완료:', {
+                PUBLIC_KEY: window.EMAILJS_CONFIG.PUBLIC_KEY ? '설정됨 (길이: ' + window.EMAILJS_CONFIG.PUBLIC_KEY.length + ')' : '❌ 미설정',
+                SERVICE_ID: window.EMAILJS_CONFIG.SERVICE_ID || '❌ 미설정',
+                TEMPLATE_ID: window.EMAILJS_CONFIG.TEMPLATE_ID || '❌ 미설정',
+                전체_값: window.EMAILJS_CONFIG
+            });
+
+            // EmailJS 초기화
+            if (window.EMAILJS_CONFIG.PUBLIC_KEY) {
+                emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
+                console.log('✅ EmailJS 초기화 완료');
+            } else {
+                console.error('❌ EmailJS PUBLIC_KEY가 없어서 초기화 실패');
+            }
+        })();
+    </script>
+
+    <!-- JavaScript -->
+    <script src="/src/components/Loading/Loading.js"></script>
+    <script src="/src/utils/loadComponent.js"></script>
+    <script src="/src/components/Header/Header.js"></script>
+    <script src="/src/data/SolutionData.js"></script>
+    <script src="/src/pages/CompanyInfo/CompanyInfo.js"></script>
+</body>
+</html>

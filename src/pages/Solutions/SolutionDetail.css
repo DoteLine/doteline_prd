@@ -1,0 +1,434 @@
+/* ========================================
+   Solution Detail Page Styles
+   ======================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+/* Main Container */
+.detail-main {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.detail-hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.detail-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.detail-hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.detail-hero__title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease;
+}
+
+/* ========================================
+   Second Hero Section
+   ======================================== */
+.detail-second-hero {
+    width: 100%;
+    padding: 100px 20px;
+    background-color: white;
+}
+
+.detail-second-hero__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.detail-second-hero__image {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.detail-second-hero__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.detail-second-hero__image:hover img {
+    transform: scale(1.05);
+}
+
+.detail-second-hero__content {
+    padding: 20px 0;
+}
+
+.detail-second-hero__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.detail-second-hero__description {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* ========================================
+   Products Section
+   ======================================== */
+.detail-products {
+    width: 100%;
+    padding: 100px 20px;
+    background-color: #f8f9fa;
+}
+
+.detail-products__container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detail-products__heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.detail-products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.product-card__image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background-color: #e9ecef;
+}
+
+.product-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card__image img {
+    transform: scale(1.1);
+}
+
+.product-card__content {
+    padding: 24px;
+}
+
+.product-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.product-card__description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ========================================
+   Pagination
+   ======================================== */
+.detail-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.pagination-button {
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #27334c;
+    background-color: white;
+    color: #27334c;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-button:hover:not(:disabled) {
+    background-color: #27334c;
+    color: white;
+    border-color: #27334c;
+    transform: translateY(-2px);
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-button.active {
+    background-color: #27334c;
+    color: white;
+    border-color: #27334c;
+}
+
+.pagination-button--prev,
+.pagination-button--next {
+    padding: 0 12px;
+}
+
+/* ========================================
+   Back Button Section
+   ======================================== */
+.detail-back {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: white;
+}
+
+.detail-back__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.detail-back__button {
+    font-family: inherit;
+    font-size: 20px;
+    background: #27334c;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.detail-back__button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.detail-back__button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.detail-back__button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.detail-back__button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.detail-back__button:hover span {
+    transform: translateX(5em);
+}
+
+.detail-back__button:active {
+    transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+    to {
+        transform: translateY(-0.1em);
+    }
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .detail-hero__title {
+        font-size: 3rem;
+    }
+
+    .detail-second-hero__container {
+        gap: 40px;
+    }
+
+    .detail-second-hero__title {
+        font-size: 2rem;
+    }
+
+    .detail-products__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .detail-hero {
+        height: 50vh;
+        min-height: 400px;
+    }
+
+    .detail-hero__content {
+        text-align: center;
+    }
+
+    .detail-hero__title {
+        font-size: 2rem;
+    }
+
+    .detail-second-hero {
+        padding: 60px 20px;
+    }
+
+    .detail-second-hero__container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .detail-second-hero__title {
+        font-size: 1.75rem;
+    }
+
+    .detail-second-hero__description {
+        font-size: 1rem;
+    }
+
+    .detail-products {
+        padding: 60px 20px;
+    }
+
+    .detail-products__heading {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .detail-products__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .detail-pagination {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pagination-button {
+        min-width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
+    }
+
+    .detail-back {
+        padding: 40px 20px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 375px) {
+    .detail-hero__title {
+        font-size: 1.75rem;
+    }
+
+    .detail-second-hero__title {
+        font-size: 1.5rem;
+    }
+
+    .detail-products__heading {
+        font-size: 1.75rem;
+    }
+}

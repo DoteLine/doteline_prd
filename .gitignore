@@ -1,0 +1,31 @@
+# Dependency directories (서버에서 npm install로 자동 생성됨)
+node_modules/
+jspm_packages/
+
+# Environment variables (민감 정보 - WinSCP로 별도 관리)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs (서버 자체 로그와 충돌 방지)
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS 및 에디터 설정 파일
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# Build directories (빌드 결과물이 있다면 제외)
+dist/
+build/

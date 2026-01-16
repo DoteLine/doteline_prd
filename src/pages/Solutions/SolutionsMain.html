@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <!-- 본고딕 폰트 -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/components/Header/Header.css">
+    <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+    <link rel="stylesheet" href="/src/components/Loading/Loading.css">
+    <link rel="stylesheet" href="/src/components/SolutionSection/SolutionSection.css">
+    <link rel="stylesheet" href="/src/pages/Solutions/SolutionsMain.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header Component -->
+        <div id="header-container"></div>
+
+        <!-- Main Content -->
+        <main class="solutions-main">
+            <section class="solutions-hero">
+                <h1 class="solutions-hero__title">Solutions</h1>
+                <p class="solutions-hero__subtitle">우리의 혁신적인 솔루션을 만나보세요</p>
+            </section>
+
+            <!-- Solution sections will be dynamically injected here by JavaScript -->
+        </main>
+
+        <!-- Footer Component -->
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // 환경변수에서 EmailJS 설정 로드
+            window.EMAILJS_CONFIG = {
+                PUBLIC_KEY: '{{EMAILJS_PUBLIC_KEY}}',
+                SERVICE_ID: '{{EMAILJS_SERVICE_ID}}',
+                TEMPLATE_ID: '{{EMAILJS_TEMPLATE_ID}}'
+            };
+
+            // EmailJS 초기화
+            if (window.EMAILJS_CONFIG.PUBLIC_KEY) {
+                emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
+                } else {
+                console.error('EmailJS PUBLIC_KEY Error');
+            }
+        })();
+    </script>
+
+    <!-- JavaScript -->
+    <script src="/src/components/Loading/Loading.js"></script>
+    <script src="/src/utils/loadComponent.js"></script>
+    <script src="/src/components/Header/Header.js"></script>
+    <script src="/src/data/SolutionData.js"></script>
+    <script src="/src/pages/Solutions/SolutionsMain.js"></script>
+</body>
+</html>

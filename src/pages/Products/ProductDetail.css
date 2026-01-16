@@ -1,0 +1,311 @@
+/* ===============================================
+   MAIN PAGE - BASE STYLES
+   Desktop-First Approach (1200px and above)
+   All responsive overrides in MainResponsive.css
+   =============================================== */
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.5;
+  background-color: #f8fafc;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ===============================================
+   BANNER SECTION
+   =============================================== */
+.banner-section {
+  position: relative;
+  margin-top: 80px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f1f5f9 0%, #dbeafe 50%, #f1f5f9 100%);
+}
+
+.banner-background {
+  position: absolute;
+  inset: 0;
+  background-image: url('/resources/productpage/main-banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 100px;
+}
+
+.banner-content {
+  height: calc(100% - 100px);
+  margin: 0 100px;
+  padding: 100px 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.banner-section .banner-background .banner-content h1 {
+  font-size: 56px;
+  color: #353535;
+  font-weight: 900;
+  margin: 0;
+}
+
+.banner-section .banner-background .banner-content .banner-subtitle {
+  font-size: 24px;
+  color: #353535;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.95;
+}
+
+
+
+
+/* 반응형 */
+@media (max-width: 1400px) {
+    .banner-title {
+        width: 92%;
+    }
+}
+
+
+/* ===============================================
+   PRODUCT MAIN LAYOUT (좌우 분할)
+   =============================================== */
+.product-main-layout {
+    display: flex;
+    gap: 60px;
+    padding: 40px 20px;
+    align-items: flex-start;
+}
+
+.product-left {
+    flex: 1.5;
+    min-width: 0;
+}
+
+.product-right {
+    flex: 0.8;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+    padding: 50px 0;
+}
+
+/* 제품명 스타일 */
+#product-info h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* 옵션 섹션 스타일 */
+#options-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #666;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.options-display {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* 태그 섹션 스타일 */
+#tags-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tags-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-list .tag-item {
+    font-size: 16px;
+    color: #555;
+    padding: 3px 0;
+}
+
+/* ===============================================
+   MAIN IMAGES SECTION (사이드 이미지 + 슬라이드쇼)
+   =============================================== */
+#main-images-section {
+    display: flex;
+    gap: 15px;
+}
+
+.side-images-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 72px;
+    height: 400px;
+    flex-shrink: 0;
+}
+
+.side-images-container .side-image {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.6;
+}
+
+.side-images-container .side-image:hover {
+    opacity: 1;
+    border-color: #cacaca;
+}
+
+.side-images-container .side-image.active {
+    border-color: #999;
+    opacity: 1;
+}
+
+/* ===============================================
+   SLIDESHOW STYLES
+   =============================================== */
+.slideshow-container {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.slideshow-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.slideshow-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-wrapper img {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.slideshow-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #333;
+}
+
+.dot:hover {
+    background-color: #666;
+}
+
+@media (max-width: 1024px) {
+    .product-main-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    #product-info h1 {
+        font-size: 36px;
+    }
+
+    .side-images-container {
+        display: none;
+    }
+
+    #main-images-section {
+        gap: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-section .banner-background .banner-content h1 {
+      font-size: 5.8vw;
+    }
+
+    .banner-section .banner-background .banner-content .banner-subtitle{
+        font-size: 3.8vw;
+    }
+
+    .slideshow-wrapper {
+        height: 400px;
+    }
+
+    .product-main-layout {
+        padding: 20px 10px;
+        gap: 30px;
+    }
+
+    #product-info h1 {
+        font-size: 28px;
+    }
+
+    .options-display {
+        font-size: 16px;
+    }
+
+    .tags-list .tag-item {
+        font-size: 14px;
+    }
+}
+
+

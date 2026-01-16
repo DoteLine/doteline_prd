@@ -1,0 +1,34 @@
+{
+  "name": "doteline-web",
+  "version": "1.0.0",
+  "description": "DOTELINE - LED 드라이버 칩 솔루션 웹사이트",
+  "main": "web.js",
+  "scripts": {
+    "start": "node web.js",
+    "dev": "nodemon web.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop doteline-web",
+    "pm2:restart": "pm2 restart doteline-web",
+    "pm2:delete": "pm2 delete doteline-web",
+    "pm2:logs": "pm2 logs doteline-web",
+    "pm2:status": "pm2 status"
+  },
+  "keywords": [
+    "doteline",
+    "led",
+    "driver",
+    "chip"
+  ],
+  "author": "DOTELINE Team",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

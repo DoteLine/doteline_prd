@@ -1,0 +1,1230 @@
+/* ===============================================
+   MAIN PAGE - RESPONSIVE STYLES
+   Desktop-First Approach (max-width breakpoints)
+
+   Breakpoints:
+   - Desktop: 1200px and above (base styles in Main.css)
+   - Tablet: 599px - 1199px
+   - Mobile: below 600px
+   =============================================== */
+
+/* ===============================================
+   TABLET (599px - 1199px)
+   =============================================== */
+@media (max-width: 1199px) {
+  /* Container */
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    margin-top: 70px;
+    min-height: 75vh;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .hero-buttons {
+    gap: 0.875rem;
+  }
+
+  .btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+  }
+
+  /* Second Hero Section */
+  .second-hero-section {
+    min-height: auto;
+    padding: 4rem 1.5rem;
+  }
+
+  .second-hero-grid {
+    grid-template-columns: 45% 55%;
+    gap: 3rem;
+  }
+
+  .second-hero-title {
+    font-size: 2rem;
+  }
+
+  .second-hero-description {
+    font-size: 1rem;
+  }
+
+  .second-hero-more-btn {
+    font-size: 18px;
+  }
+
+  .second-hero-image {
+    height: 500px;
+  }
+
+  /* About Section */
+  .about-section {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .about-grid {
+    gap: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+  }
+
+  .about-text {
+    font-size: 0.9375rem;
+  }
+
+  .about-visual {
+    height: 18rem;
+  }
+
+  .about-year {
+    font-size: 5rem;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .stats-grid {
+    gap: 2rem;
+  }
+
+  .stat-number {
+    font-size: 2.25rem;
+  }
+
+  .stat-text {
+    font-size: 0.8125rem;
+  }
+
+  /* Products Section */
+  .products-section {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .section-title-center {
+    font-size: 2.25rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    padding: 1.75rem;
+  }
+
+  .product-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    font-size: 1.75rem;
+  }
+
+  .product-title {
+    font-size: 1.125rem;
+  }
+
+  .product-description {
+    font-size: 0.9375rem;
+  }
+
+  /* Products Grid New */
+  .products-section-new,
+  .solutions-section-new {
+    padding: 4rem 1.5rem;
+  }
+
+  .products-grid-new,
+  .solutions-grid-new {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .product-placeholder-icon,
+  .solution-placeholder-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .product-content-new,
+  .solution-content-new {
+    padding: 1rem;
+  }
+
+  .product-title-new,
+  .solution-title-new {
+    font-size: 0.9375rem;
+  }
+
+  .product-description-new,
+  .solution-description-new {
+    font-size: 0.8125rem;
+  }
+
+  .result-item {
+    font-size: 1rem;
+  }
+
+  .result-value {
+    font-size: 1.375rem;
+  }
+
+  /* Stores Section */
+  .stores-section {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .stores-grid {
+    gap: 2rem;
+  }
+
+  .store-card {
+    padding: 1.75rem;
+  }
+
+  .store-card-title {
+    font-size: 1.375rem;
+  }
+
+  .store-map {
+    min-height: 350px;
+  }
+
+  /* ===============================================
+     CAROUSEL SECTION - TABLET
+     =============================================== */
+  .carousel-section {
+    padding: 4rem 1rem;
+  }
+
+  .carousel-header {
+    margin-bottom: 3rem;
+  }
+
+  .carousel-title {
+    font-size: 2rem;
+  }
+
+  .carousel-subtitle {
+    font-size: 1rem;
+  }
+
+  .carousel-swiper {
+    padding: 3rem 0 4rem;
+  }
+
+  /* 슬라이드 콘텐츠 - 태블릿용 크기 조정 */
+  .carousel-slide-content {
+    max-width: 320px;
+  }
+
+  /* 이미지 높이 조정 */
+  .carousel-image {
+    height: 260px;
+  }
+
+  /* 슬라이드 정보 */
+  .carousel-slide-info {
+    padding: 1.5rem;
+  }
+
+  .carousel-slide-title {
+    font-size: 1.125rem;
+  }
+
+  .carousel-slide-description {
+    font-size: 0.875rem;
+  }
+
+  /* 네비게이션 버튼 - 태블릿 */
+  .carousel-button-prev,
+  .carousel-button-next {
+    width: 48px;
+    height: 48px;
+  }
+
+  .carousel-button-prev::after,
+  .carousel-button-next::after {
+    font-size: 1.25rem;
+  }
+
+  .carousel-button-prev {
+    left: 1rem;
+  }
+
+  .carousel-button-next {
+    right: 1rem;
+  }
+}
+
+/* ===============================================
+   MOBILE (<600px)
+   =============================================== */
+@media (max-width: 599px) {
+  /* Container */
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    margin-top: 60px;
+    min-height: 65vh;
+    padding: 2rem 0;
+  }
+
+  .hero-background {
+    background-size: cover;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    text-align: center;
+  }
+
+  /* Second Hero Section */
+  .second-hero-section {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .second-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    grid-template-areas:
+      "image"
+      "content";
+  }
+
+  .second-hero-content {
+    gap: 1.5rem;
+    grid-area: content;
+  }
+
+  .second-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .second-hero-description {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .second-hero-btn-wrapper {
+    margin-top: 0.5rem;
+  }
+
+  .second-hero-more-btn {
+    font-size: 16px;
+    padding: 0.6em 0.9em;
+    padding-left: 0.8em;
+  }
+
+  .second-hero-image {
+    height: 400px;
+    grid-area: image;
+  }
+
+  .second-hero-image img {
+    border-radius: 0.75rem;
+  }
+
+  /* About Section */
+  .about-section {
+    padding: 3rem 1rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-text {
+    font-size: 0.875rem;
+    gap: 0.875rem;
+  }
+
+  .about-visual {
+    height: 14rem;
+  }
+
+  .about-year {
+    font-size: 3.5rem;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .stat-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* Products Section */
+  .products-section {
+    padding: 3rem 1rem;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title-center {
+    font-size: 1.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .product-card {
+    padding: 1.5rem;
+  }
+
+  .product-icon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-description {
+    font-size: 0.875rem;
+  }
+
+  /* Products Grid New - 2 Columns on Mobile */
+  .products-section-new,
+  .solutions-section-new {
+    padding: 2.5rem 1rem;
+  }
+
+  .products-grid-new,
+  .solutions-grid-new {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .product-card-new,
+  .solution-card-new {
+    border-radius: 0.5rem;
+  }
+
+  .product-placeholder-icon,
+  .solution-placeholder-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .product-content-new,
+  .solution-content-new {
+    padding: 0.75rem;
+  }
+
+  .product-title-new,
+  .solution-title-new {
+    font-size: 0.8125rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .product-description-new,
+  .solution-description-new {
+    font-size: 0.6875rem;
+    line-height: 1.4;
+  }
+
+  /* Products More Button */
+  .products-more-btn-wrapper {
+    margin-top: 2rem;
+  }
+
+  .products-more-btn {
+    font-size: 16px;
+    padding: 0.6em 0.9em;
+    padding-left: 0.8em;
+  }
+
+  /* Stores Section */
+  .stores-section {
+    padding: 3rem 1rem;
+  }
+
+  .stores-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .store-card {
+    padding: 1.5rem;
+  }
+
+  .store-card-title {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .store-details {
+    gap: 1rem;
+  }
+
+  .store-detail {
+    gap: 0.875rem;
+  }
+
+  .store-detail-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .detail-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .detail-label {
+    font-size: 0.8125rem;
+  }
+
+  .detail-value {
+    font-size: 0.9375rem;
+  }
+
+  .detail-sub {
+    font-size: 0.8125rem;
+  }
+
+  .detail-link {
+    font-size: 0.9375rem;
+  }
+
+  .store-action {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+  }
+
+  .direction-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .direction-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .store-map {
+    height: 16rem;
+    min-height: 16rem;
+    border-radius: 0.75rem;
+  }
+
+  /* Animation Adjustments */
+  .section-animate {
+    transform: translateY(20px);
+  }
+
+  /* ===============================================
+     CAROUSEL SECTION - MOBILE
+     =============================================== */
+  .carousel-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .carousel-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .carousel-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .carousel-swiper {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  /* 슬라이드 콘텐츠 - 모바일은 1.2개 표시이므로 더 크게 */
+  .carousel-slide-content {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* 이미지 높이 - 모바일에 맞게 조정 */
+  .carousel-image {
+    height: 240px;
+  }
+
+  /* 슬라이드 정보 패딩 */
+  .carousel-slide-info {
+    padding: 1rem;
+  }
+
+  .carousel-slide-title {
+    font-size: 0.9375rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .carousel-slide-description {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* 네비게이션 버튼 - 모바일 */
+  .carousel-button-prev,
+  .carousel-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-button-prev::after,
+  .carousel-button-next::after {
+    font-size: 1rem;
+  }
+
+  .carousel-button-prev {
+    left: 0.25rem;
+  }
+
+  .carousel-button-next {
+    right: 0.25rem;
+  }
+
+  /* 페이지네이션 - 모바일 */
+  .carousel-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carousel-pagination .swiper-pagination-bullet-active {
+    width: 20px;
+  }
+}
+
+/* ===============================================
+   EXTRA SMALL MOBILE (<400px)
+   Fine-tuning for very small screens
+   =============================================== */
+@media (max-width: 399px) {
+  .hero-title {
+    font-size: 1.625rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .second-hero-title {
+    font-size: 1.5rem;
+  }
+
+  .second-hero-description {
+    font-size: 0.875rem;
+  }
+
+  .second-hero-more-btn {
+    font-size: 15px;
+  }
+
+  .second-hero-image {
+    height: 350px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title-center {
+    font-size: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.375rem;
+  }
+
+  .stat-text {
+    font-size: 0.6875rem;
+  }
+
+  .store-card-title {
+    font-size: 1rem;
+  }
+}
+
+/* ===============================================
+   LANDSCAPE MODE OPTIMIZATION (Mobile)
+   =============================================== */
+@media (max-width: 959px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 100vh;
+    padding: 1.5rem 0;
+  }
+
+  .second-hero-section {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+
+  .second-hero-grid {
+    grid-template-columns: 45% 55%;
+    grid-template-areas: unset;
+    gap: 2rem;
+  }
+
+  .second-hero-image {
+    height: 320px;
+  }
+}
+
+/* ===============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   =============================================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets on mobile */
+  .btn {
+    min-height: 44px;
+  }
+
+  .direction-btn {
+    min-height: 44px;
+  }
+
+  .second-hero-more-btn {
+    min-height: 48px;
+  }
+
+  /* Remove hover effects on second-hero-more-btn */
+  .second-hero-more-btn:hover .svg-wrapper {
+    animation: none;
+  }
+
+  .second-hero-more-btn:hover svg {
+    transform: none;
+  }
+
+  .second-hero-more-btn:hover span {
+    transform: none;
+  }
+
+  /* Remove hover effects on touch devices */
+  .product-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-card:hover .product-icon {
+    transform: none;
+  }
+
+  .product-card-new:hover,
+  .solution-card-new:hover {
+    transform: none;
+  }
+
+  /* Solution cards - remove hover effects on touch */
+  .solution-card-stack__inner:hover {
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.06),
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.1);
+  }
+
+  .solution-card-stack__inner:hover .solution-card-stack__image img {
+    transform: none;
+  }
+
+  .solution-card-stack__cta {
+    min-height: 48px;
+  }
+}
+
+/* ===============================================
+   SOLUTIONS STACK - RESPONSIVE STYLES
+   =============================================== */
+
+/* TABLET (599px - 1199px) */
+@media (max-width: 1199px) {
+  /* 솔루션 섹션 헤더 */
+  .solutions-main-title {
+    font-size: 2.25rem;
+  }
+
+  .solutions-main-description {
+    font-size: 1rem;
+  }
+
+  .solutions-header {
+    margin-bottom: 3rem;
+  }
+
+  /* 컨테이너 패딩 조정 */
+  .solutions-stack-container {
+    padding: 0 1.5rem;
+  }
+
+  /* 카드 높이 조정 */
+  .solution-card-stack {
+    height: 90vh;
+  }
+
+  .solution-card-stack__inner {
+    height: 480px;
+    max-width: 100%;
+    grid-template-columns: 42% 58%;
+  }
+
+  /* Sticky top 위치 조정 */
+  .solution-card-stack[data-index="0"] .solution-card-stack__inner {
+    top: 80px;
+  }
+
+  .solution-card-stack[data-index="1"] .solution-card-stack__inner {
+    top: 100px;
+  }
+
+  .solution-card-stack[data-index="2"] .solution-card-stack__inner {
+    top: 120px;
+  }
+
+  .solution-card-stack[data-index="3"] .solution-card-stack__inner {
+    top: 140px;
+  }
+
+  /* 컨텐츠 패딩 */
+  .solution-card-stack__content {
+    padding: 2.5rem;
+    gap: 1.5rem;
+  }
+
+  /* 배경 숫자 크기 조정 */
+  .solution-card-stack__content::before {
+    font-size: 4rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  /* 제목 크기 */
+  .solution-card-stack__title {
+    font-size: 2rem;
+  }
+
+  /* 설명 크기 */
+  .solution-card-stack__description {
+    font-size: 1rem;
+  }
+
+  /* CTA 버튼 */
+  .solution-card-stack__cta {
+    padding: 1rem 2rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* MOBILE (<600px) */
+@media (max-width: 599px) {
+  /* 솔루션 섹션 헤더 */
+  .solutions-stack-wrapper {
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .solutions-main-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .solutions-main-description {
+    font-size: 0.875rem;
+  }
+
+  .solutions-header {
+    margin-bottom: 2rem;
+  }
+
+  /* 컨테이너 */
+  .solutions-stack-container {
+    padding: 0 1rem;
+  }
+
+  /* 카드 높이 - 모바일에서는 짧게 */
+  .solution-card-stack {
+    height: 80vh;
+  }
+
+  /* 카드 내부 - 세로 레이아웃으로 변경 */
+  .solution-card-stack__inner {
+    height: auto;
+    min-height: 520px;
+    max-height: 600px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+    border-radius: 20px;
+  }
+
+  /* Sticky top 위치 - 모바일 */
+  .solution-card-stack[data-index="0"] .solution-card-stack__inner {
+    top: 60px;
+  }
+
+  .solution-card-stack[data-index="1"] .solution-card-stack__inner {
+    top: 75px;
+  }
+
+  .solution-card-stack[data-index="2"] .solution-card-stack__inner {
+    top: 90px;
+  }
+
+  .solution-card-stack[data-index="3"] .solution-card-stack__inner {
+    top: 105px;
+  }
+
+  /* 이미지 높이 */
+  .solution-card-stack__image {
+    height: 200px;
+  }
+
+  /* 컨텐츠 패딩 */
+  .solution-card-stack__content {
+    padding: 2rem 1.5rem;
+    gap: 1.25rem;
+  }
+
+  /* 배경 숫자 - 모바일 */
+  .solution-card-stack__content::before {
+    font-size: 3rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  /* 라벨 */
+  .solution-card-stack__label {
+    padding: 0.5rem 1rem;
+    font-size: 0.6875rem;
+    border-radius: 16px;
+  }
+
+  /* 제목 */
+  .solution-card-stack__title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* 설명 */
+  .solution-card-stack__description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* CTA 버튼 */
+  .solution-card-stack__cta {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  /* 애니메이션 조정 - 모바일에서는 덜 극적으로 */
+  @keyframes solution-card-scale-down {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(calc(1 - (0.05 * var(--reverse-index))));
+      opacity: 0.8;
+    }
+  }
+
+  /* 폴백 스케일도 조정 */
+  @supports not (animation-timeline: scroll()) {
+    .solution-card-stack__inner {
+      transform: scale(calc(1 - (0.03 * var(--card-index, 0))));
+    }
+  }
+}
+
+/* EXTRA SMALL MOBILE (<400px) */
+@media (max-width: 399px) {
+  /* 헤더 */
+  .solutions-main-title {
+    font-size: 1.5rem;
+  }
+
+  .solutions-main-description {
+    font-size: 0.8125rem;
+  }
+
+  /* 카드 내부 */
+  .solution-card-stack__inner {
+    min-height: 480px;
+    max-height: 550px;
+    grid-template-rows: 180px 1fr;
+    border-radius: 16px;
+  }
+
+  /* 이미지 높이 */
+  .solution-card-stack__image {
+    height: 180px;
+  }
+
+  /* 컨텐츠 패딩 */
+  .solution-card-stack__content {
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+
+  /* 배경 숫자 */
+  .solution-card-stack__content::before {
+    font-size: 2.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  /* 라벨 */
+  .solution-card-stack__label {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.625rem;
+  }
+
+  /* 제목 */
+  .solution-card-stack__title {
+    font-size: 1.25rem;
+  }
+
+  /* 설명 */
+  .solution-card-stack__description {
+    font-size: 0.8125rem;
+  }
+
+  /* CTA 버튼 */
+  .solution-card-stack__cta {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* LANDSCAPE MODE - MOBILE */
+@media (max-width: 959px) and (orientation: landscape) {
+  .solutions-stack-wrapper {
+    padding: 2rem 0 1rem;
+  }
+
+  .solution-card-stack {
+    height: 140vh;
+  }
+
+  .solution-card-stack__inner {
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 1fr;
+    height: 350px;
+    min-height: 350px;
+    max-height: 350px;
+  }
+
+  .solution-card-stack__image {
+    height: 100%;
+  }
+
+  .solution-card-stack__content {
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .solution-card-stack__title {
+    font-size: 1.375rem;
+  }
+
+  .solution-card-stack__description {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ===============================================
+   FAQ SECTION - RESPONSIVE STYLES
+   =============================================== */
+
+/* TABLET (599px - 1199px) */
+@media (max-width: 1199px) {
+  .faq-section {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .faq-accordion {
+    margin: 2rem auto 0;
+    gap: 0.875rem;
+  }
+
+  .faq-question {
+    padding: 1.375rem 1.625rem;
+  }
+
+  .faq-q-text {
+    font-size: 1.0625rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 1.625rem 1.375rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* MOBILE (<600px) */
+@media (max-width: 599px) {
+  .faq-section {
+    padding: 3rem 1rem;
+  }
+
+  .faq-accordion {
+    margin: 1.5rem auto 0;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border-radius: 0.625rem;
+  }
+
+  .faq-question {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .faq-q-text {
+    font-size: 1rem;
+    padding-right: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .faq-toggle-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+}
+
+/* EXTRA SMALL MOBILE (<400px) */
+@media (max-width: 399px) {
+  .faq-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .faq-accordion {
+    margin: 1.25rem auto 0;
+    gap: 0.625rem;
+  }
+
+  .faq-item {
+    border-radius: 0.5rem;
+  }
+
+  .faq-question {
+    padding: 1rem 1rem;
+  }
+
+  .faq-q-text {
+    font-size: 0.9375rem;
+    padding-right: 0.75rem;
+  }
+
+  .faq-toggle-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 1rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+  }
+}
+
+/* TOUCH DEVICE - FAQ 터치 최적화 */
+@media (hover: none) and (pointer: coarse) {
+  .faq-question {
+    min-height: 44px;
+  }
+
+  /* 터치 디바이스에서 호버 효과 제거 */
+  .faq-item:hover {
+    border-color: #eaeaea;
+    box-shadow: none;
+  }
+
+  /* 활성화된 아이템에만 스타일 적용 */
+  .faq-item.active:hover {
+    border-color: #007aff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+}

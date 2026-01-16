@@ -1,0 +1,80 @@
+🛠 1단계: 내 컴퓨터 프로젝트 설정 (Local)
+메인 파일명 확인: 프로젝트 루트의 실행 파일 이름을 web.js로 변경합니다.
+
+포트 설정 수정: web.js 내 포트 코드를 수정합니다.
+
+const port = process.env.PORT || 8001;
+
+.gitignore 작성: 프로젝트 루트에 .gitignore 파일을 만들고 아래 내용을 입력합니다.
+
+node_modules/, .env, .DS_Store
+
+.env 파일 작성: (WinSCP로 직접 올릴 용도)
+
+PORT=8001
+
+DOMAIN=doteline.co.kr
+
+기타 API 키 및 DB 정보 입력
+
+🌐 2단계: 카페24 관리자 페이지 설정
+앱 생성: [앱 생성/관리] 메뉴에서 앱 이름(doteline)을 생성합니다.
+
+도메인 연결: [도메인 연결 관리]에서 doteline.co.kr을 해당 앱에 연결합니다.
+
+SSH 키 할당:
+
+[Public Key 관리]에 내 PC의 id_rsa.pub 내용 등록.
+
+중요: [앱 생성/관리] 화면 하단에서 등록한 키를 선택하고 [할당] 버튼 클릭.
+
+저장소 주소 확인: phyun7003@doteline.cafe24app.com:doteline 형태의 주소를 복사합니다.
+
+🚀 3단계: 최초 소스 코드 배포 (Git)
+내 컴퓨터 터미널(VS Code 터미널 등)에서 아래 명령어를 순서대로 실행합니다.
+
+Bash
+
+# 1. Git 초기화 및 파일 담기
+git init
+git add .
+
+# 2. 커밋 (버전 생성)
+git commit -m "Initial Deploy for doteline"
+
+# 3. 카페24 원격 저장소 연결 (복사한 주소 사용)
+git remote add cafe24 phyun7003@doteline.cafe24app.com:doteline
+
+# 4. 서버로 전송 (배포)
+git push cafe24 master
+🔐 4단계: 민감 파일 업로드 및 실행 (WinSCP)
+WinSCP 접속:
+
+프로토콜: SFTP (포트 22)
+
+호스트: doteline.cafe24app.com
+
+계정: 카페24 아이디 / 비번
+
+.env 전송: 내 컴퓨터의 .env 파일을 서버의 doteline/ 폴더 안으로 직접 드래그해서 넣습니다.
+
+앱 실행: 카페24 관리자 페이지에서 앱 상태를 확인하고 [실행] 버튼을 누릅니다. (이미 실행 중이면 [중지] 후 [실행])
+
+🔄 5단계: 추후 유지보수 및 업데이트 프로세스
+앞으로 사이트를 수정할 때는 아래 루틴만 반복하면 됩니다.
+
+일반 코드 수정 시:
+
+내 컴퓨터에서 코드 수정.
+
+git add . -> git commit -m "수정내용" -> git push cafe24 master.
+
+카페24 관리자 페이지에서 [앱 중지/실행] (재시작).
+
+환경 변수(API 키 등) 수정 시:
+
+내 컴퓨터 .env 수정.
+
+WinSCP로 서버에 덮어쓰기.
+
+카페24 관리자 페이지에서 [앱 중지/실행] (재시작).

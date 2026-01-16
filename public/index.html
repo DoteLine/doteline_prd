@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/resources/icon/favicon.ico?v=1">
+    <title>DOTELINE</title>
+
+    <!-- 본고딕(Noto Sans KR) 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* 전역 폰트 설정 */
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 로딩 화면 스타일 */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #0f172a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #app-container {
+            display: none;
+        }
+
+        #app-container.loaded {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div id="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 메인 컨텐츠 컨테이너 -->
+    <div id="app-container"></div>
+
+    <script>
+        /**
+         * 메인 페이지 동적 렌더링 스크립트
+         * src/pages/Main/Main.html의 내용을 로드하여 렌더링
+         */
+        class PageLoader {
+            constructor() {
+                this.appContainer = document.getElementById('app-container');
+                this.loadingScreen = document.getElementById('loading-screen');
+                this.init();
+            }
+
+            async init() {
+                try {
+                    await this.loadMainPage();
+                    this.hideLoading();
+                } catch (error) {
+                    console.error('========================================');
+                    console.error('페이지 로딩 중 오류 발생');
+                    console.error('오류 타입:', error.constructor.name);
+                    console.error('오류 메시지:', error.message);
+                    console.error('오류 스택:', error.stack);
+                    console.error('오류 전체 객체:', error);
+                    console.error('========================================');
+                    this.showError(error);
+                }
+            }
+
+            async loadMainPage() {
+                const response = await fetch('/src/pages/Main/Main.html');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const html = await response.text();
+
+                // HTML 파싱 및 body 내용 추출
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                // CSS 링크 추가
+                const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+                cssLinks.forEach(link => {
+                    const newLink = document.createElement('link');
+                    newLink.rel = 'stylesheet';
+                    newLink.href = link.getAttribute('href');
+                    document.head.appendChild(newLink);
+                });
+
+                // body 내용 삽입
+                this.appContainer.innerHTML = doc.body.innerHTML;
+
+                // JavaScript 파일 동적 로드 (src 있는 것과 인라인 스크립트 모두)
+                const scripts = doc.querySelectorAll('script');
+                for (const script of scripts) {
+                    if (script.hasAttribute('src')) {
+                        // 외부 스크립트
+                        await this.loadScript(script.getAttribute('src'));
+                    } else if (script.textContent.trim()) {
+                        // 인라인 스크립트
+                        this.executeInlineScript(script.textContent);
+                    }
+                }
+            }
+
+            loadScript(src) {
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.onload = () => {
+                        resolve();
+                    };
+                    script.onerror = (error) => {
+                        console.error(`[Script Loading] ✗ 실패: ${src}`);
+                        console.error('에러 이벤트:', error);
+                        reject(new Error(`스크립트 로딩 실패: ${src}`));
+                    };
+                    document.body.appendChild(script);
+                });
+            }
+
+            executeInlineScript(scriptContent) {
+                try {
+                    const script = document.createElement('script');
+                    script.textContent = scriptContent;
+                    document.body.appendChild(script);
+                } catch (error) {
+                    console.error('[Inline Script] ✗ 실행 실패:', error);
+                }
+            }
+
+            hideLoading() {
+                this.loadingScreen.style.display = 'none';
+                this.appContainer.classList.add('loaded');
+            }
+
+            showError(error) {
+                const errorMessage = error ? error.message : '알 수 없는 오류';
+                this.loadingScreen.innerHTML = `
+                    <div style="text-align: center; color: #64748b; padding: 2rem;">
+                        <h2 style="margin-bottom: 1rem;">페이지 로딩 실패</h2>
+                        <p>페이지를 불러오는 중 문제가 발생했습니다.</p>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: #ef4444;">오류: ${errorMessage}</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #94a3b8;">F12 키를 눌러 콘솔에서 자세한 오류를 확인하세요.</p>
+                        <button onclick="location.reload()"
+                                style="margin-top: 1.5rem; padding: 0.5rem 1rem; background-color: #0f172a; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+                            다시 시도
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // 페이지 로더 시작
+        new PageLoader();
+    </script>
+</body>
+</html>
