@@ -15,9 +15,9 @@ const ROOT_DIR = path.join(__dirname, '..', '..');
  */
 const ENV_MAPPINGS = {
     KAKAO_MAP_API_KEY: () => process.env.KAKAO_MAP_API_KEY || '',
-    EMAILJS_PUBLIC_KEY: () => process.env.EMAILJS_PUBLIC_KEY || '',
-    EMAILJS_SERVICE_ID: () => process.env.EMAILJS_SERVICE_ID || '',
-    EMAILJS_TEMPLATE_ID: () => process.env.EMAILJS_TEMPLATE_ID || '',
+    EMAILJS_PUBLIC_KEY: () => (process.env.EMAILJS_PUBLIC_KEY || '').trim(),
+    EMAILJS_SERVICE_ID: () => (process.env.EMAILJS_SERVICE_ID || '').trim(),
+    EMAILJS_TEMPLATE_ID: () => (process.env.EMAILJS_TEMPLATE_ID || '').trim(),
     SITE_NAME: () => process.env.SITE_NAME || 'DOTELINE',
     SITE_DESCRIPTION: () => process.env.SITE_DESCRIPTION || '',
     SITE_KEYWORDS: () => process.env.SITE_KEYWORDS || '',

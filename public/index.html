@@ -34,15 +34,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <script>
-        // 서버의 Router(index.js)가 {{ }} 패턴을 찾아 실제 .env 값으로 치환합니다.
+        // 서버가 {{ }} 부분을 실제 값으로 치환합니다.
+        // 백틱(`)을 사용하면 주입된 값에 따옴표가 섞여 있어도 문법 오류를 방지할 수 있습니다.
         window.EMAILJS_CONFIG = {
-            SERVICE_ID: "{{EMAILJS_SERVICE_ID}}",
-            TEMPLATE_ID: "{{EMAILJS_TEMPLATE_ID}}",
-            PUBLIC_KEY: "{{EMAILJS_PUBLIC_KEY}}"
+            SERVICE_ID: `{{EMAILJS_SERVICE_ID}}`,
+            TEMPLATE_ID: `{{EMAILJS_TEMPLATE_ID}}`,
+            PUBLIC_KEY: `{{EMAILJS_PUBLIC_KEY}}`
         };
 
-        window.KAKAO_MAP_API_KEY = "{{KAKAO_MAP_API_KEY}}";
-        window.BASE_URL = "{{BASE_URL}}";
+        window.KAKAO_MAP_API_KEY = `{{KAKAO_MAP_API_KEY}}`;
+        window.BASE_URL = `{{BASE_URL}}`;
     </script>
 
     <script type="application/ld+json">
