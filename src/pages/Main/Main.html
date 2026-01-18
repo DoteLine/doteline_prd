@@ -357,30 +357,13 @@
 <!-- Swiper JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- EmailJS SDK -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-    (function(){
-        window.EMAILJS_CONFIG = {
-            PUBLIC_KEY: '{{EMAILJS_PUBLIC_KEY}}',
-            SERVICE_ID: '{{EMAILJS_SERVICE_ID}}',
-            TEMPLATE_ID: '{{EMAILJS_TEMPLATE_ID}}'
-        };
-
-        if (window.EMAILJS_CONFIG.PUBLIC_KEY) {
-            emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
-        } else {
-            console.error('EmailJS PUBLIC_KEY가 없어서 초기화 실패');
-        }
-    })();
-</script>
-
 <!-- JavaScript -->
 <script src="/src/utils/loadComponent.js"></script>
-<script src="/src/components/Header/Header.js"></script>
 <script src="/src/components/Carousel/Carousel.js"></script>
 <script src="/src/components/StoreSection/StoreSection.js"></script>
 <script src="/src/data/SolutionData.js"></script>
 <script src="/src/pages/Main/Main.js"></script>
+<script src="/src/components/Header/Header.js"></script>
+
 </body>
 </html>
