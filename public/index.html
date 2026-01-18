@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 기본 SEO 메타 태그 -->
     <title>DOTELINE - 프리미엄 LED 드라이버 칩 솔루션</title>
     <meta name="description" content="도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공합니다. 실내/야외 LED 디스플레이, 렌탈 스크린, COB LED 등 다양한 제품을 만나보세요.">
     <meta name="keywords" content="LED, 드라이버칩, 디스플레이, 도트라인, DOTELINE, LED솔루션, LED스크린, 실내LED, 야외LED, COB LED, 렌탈스크린">
@@ -12,7 +11,6 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{BASE_URL}}">
 
-    <!-- Open Graph (Facebook, LinkedIn 등) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="DOTELINE">
     <meta property="og:title" content="DOTELINE - 프리미엄 LED 드라이버 칩 솔루션">
@@ -23,82 +21,51 @@
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="ko_KR">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DOTELINE - 프리미엄 LED 드라이버 칩 솔루션">
     <meta name="twitter:description" content="도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공합니다.">
     <meta name="twitter:image" content="{{BASE_URL}}/resources/og-image.jpg">
 
-    <!-- 파비콘 및 앱 아이콘 -->
     <link rel="icon" href="/resources/icon/favicon.ico?v=1">
     <link rel="apple-touch-icon" sizes="180x180" href="/resources/icon/apple-touch-icon.png">
 
-    <!-- 본고딕(Noto Sans KR) 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <!-- 구조화된 데이터 (JSON-LD) - 검색엔진 최적화 -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "DOTELINE",
-        "alternateName": "도트라인",
-        "url": "{{BASE_URL}}",
-        "logo": "{{BASE_URL}}/resources/icon/logo.png",
-        "description": "도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공하는 전문 기업입니다.",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "KR",
-            "addressLocality": "대한민국"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "availableLanguage": ["Korean", "English"]
-        },
-        "sameAs": []
-    }
+    <script>
+        // 서버의 Router(index.js)가 {{ }} 패턴을 찾아 실제 .env 값으로 치환합니다.
+        window.EMAILJS_CONFIG = {
+            SERVICE_ID: "{{EMAILJS_SERVICE_ID}}",
+            TEMPLATE_ID: "{{EMAILJS_TEMPLATE_ID}}",
+            PUBLIC_KEY: "{{EMAILJS_PUBLIC_KEY}}"
+        };
+
+        window.KAKAO_MAP_API_KEY = "{{KAKAO_MAP_API_KEY}}";
+        window.BASE_URL = "{{BASE_URL}}";
     </script>
+
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "DOTELINE",
-        "url": "{{BASE_URL}}",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "{{BASE_URL}}/product?search={search_term_string}",
-            "query-input": "required name=search_term_string"
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DOTELINE",
+            "alternateName": "도트라인",
+            "url": "{{BASE_URL}}",
+            "logo": "{{BASE_URL}}/resources/icon/logo.png",
+            "description": "도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공하는 전문 기업입니다.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "KR",
+                "addressLocality": "대한민국"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "availableLanguage": ["Korean", "English"]
+            },
+            "sameAs": []
         }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "홈",
-                "item": "{{BASE_URL}}"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "제품",
-                "item": "{{BASE_URL}}/product"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "솔루션",
-                "item": "{{BASE_URL}}/solution"
-            }
-        ]
-    }
     </script>
 
     <style>
@@ -109,6 +76,8 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         /* 로딩 화면 스타일 */
@@ -149,130 +118,115 @@
     </style>
 </head>
 <body>
-    <!-- 로딩 화면 -->
-    <div id="loading-screen">
-        <div class="loading-spinner"></div>
-    </div>
+<div id="loading-screen">
+    <div class="loading-spinner"></div>
+</div>
 
-    <!-- 메인 컨텐츠 컨테이너 -->
-    <div id="app-container"></div>
+<div id="app-container"></div>
 
-    <script>
-        /**
-         * 메인 페이지 동적 렌더링 스크립트
-         * src/pages/Main/Main.html의 내용을 로드하여 렌더링
-         */
-        class PageLoader {
-            constructor() {
-                this.appContainer = document.getElementById('app-container');
-                this.loadingScreen = document.getElementById('loading-screen');
-                this.init();
+<script>
+    /**
+     * 메인 페이지 동적 렌더링 스크립트
+     * src/pages/Main/Main.html의 내용을 로드하여 렌더링
+     */
+    class PageLoader {
+        constructor() {
+            this.appContainer = document.getElementById('app-container');
+            this.loadingScreen = document.getElementById('loading-screen');
+            this.init();
+        }
+
+        async init() {
+            try {
+                await this.loadMainPage();
+                this.hideLoading();
+            } catch (error) {
+                console.error('========================================');
+                console.error('페이지 로딩 중 오류 발생');
+                console.error('오류 메시지:', error.message);
+                console.error('========================================');
+                this.showError(error);
+            }
+        }
+
+        async loadMainPage() {
+            // 서버 라우터가 처리한 치환된 Main.html을 가져옵니다.
+            const response = await fetch('/src/pages/Main/Main.html');
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            async init() {
-                try {
-                    await this.loadMainPage();
-                    this.hideLoading();
-                } catch (error) {
-                    console.error('========================================');
-                    console.error('페이지 로딩 중 오류 발생');
-                    console.error('오류 타입:', error.constructor.name);
-                    console.error('오류 메시지:', error.message);
-                    console.error('오류 스택:', error.stack);
-                    console.error('오류 전체 객체:', error);
-                    console.error('========================================');
-                    this.showError(error);
+            const html = await response.text();
+
+            // HTML 파싱 및 body 내용 추출
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // CSS 링크 추가
+            const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+            cssLinks.forEach(link => {
+                const newLink = document.createElement('link');
+                newLink.rel = 'stylesheet';
+                newLink.href = link.getAttribute('href');
+                document.head.appendChild(newLink);
+            });
+
+            // body 내용 삽입
+            this.appContainer.innerHTML = doc.body.innerHTML;
+
+            // JavaScript 파일 동적 로드
+            const scripts = doc.querySelectorAll('script');
+            for (const script of scripts) {
+                if (script.hasAttribute('src')) {
+                    await this.loadScript(script.getAttribute('src'));
+                } else if (script.textContent.trim()) {
+                    this.executeInlineScript(script.textContent);
                 }
             }
+        }
 
-            async loadMainPage() {
-                const response = await fetch('/src/pages/Main/Main.html');
+        loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`스크립트 로딩 실패: ${src}`));
+                document.body.appendChild(script);
+            });
+        }
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const html = await response.text();
-
-                // HTML 파싱 및 body 내용 추출
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-
-                // CSS 링크 추가
-                const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-                cssLinks.forEach(link => {
-                    const newLink = document.createElement('link');
-                    newLink.rel = 'stylesheet';
-                    newLink.href = link.getAttribute('href');
-                    document.head.appendChild(newLink);
-                });
-
-                // body 내용 삽입
-                this.appContainer.innerHTML = doc.body.innerHTML;
-
-                // JavaScript 파일 동적 로드 (src 있는 것과 인라인 스크립트 모두)
-                const scripts = doc.querySelectorAll('script');
-                for (const script of scripts) {
-                    if (script.hasAttribute('src')) {
-                        // 외부 스크립트
-                        await this.loadScript(script.getAttribute('src'));
-                    } else if (script.textContent.trim()) {
-                        // 인라인 스크립트
-                        this.executeInlineScript(script.textContent);
-                    }
-                }
+        executeInlineScript(scriptContent) {
+            try {
+                const script = document.createElement('script');
+                script.textContent = scriptContent;
+                document.body.appendChild(script);
+            } catch (error) {
+                console.error('[Inline Script] 실행 실패:', error);
             }
+        }
 
-            loadScript(src) {
-                return new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = src;
-                    script.onload = () => {
-                        resolve();
-                    };
-                    script.onerror = (error) => {
-                        console.error(`[Script Loading] ✗ 실패: ${src}`);
-                        console.error('에러 이벤트:', error);
-                        reject(new Error(`스크립트 로딩 실패: ${src}`));
-                    };
-                    document.body.appendChild(script);
-                });
-            }
+        hideLoading() {
+            this.loadingScreen.style.display = 'none';
+            this.appContainer.classList.add('loaded');
+        }
 
-            executeInlineScript(scriptContent) {
-                try {
-                    const script = document.createElement('script');
-                    script.textContent = scriptContent;
-                    document.body.appendChild(script);
-                } catch (error) {
-                    console.error('[Inline Script] ✗ 실행 실패:', error);
-                }
-            }
-
-            hideLoading() {
-                this.loadingScreen.style.display = 'none';
-                this.appContainer.classList.add('loaded');
-            }
-
-            showError(error) {
-                const errorMessage = error ? error.message : '알 수 없는 오류';
-                this.loadingScreen.innerHTML = `
+        showError(error) {
+            const errorMessage = error ? error.message : '알 수 없는 오류';
+            this.loadingScreen.innerHTML = `
                     <div style="text-align: center; color: #64748b; padding: 2rem;">
                         <h2 style="margin-bottom: 1rem;">페이지 로딩 실패</h2>
-                        <p>페이지를 불러오는 중 문제가 발생했습니다.</p>
-                        <p style="margin-top: 1rem; font-size: 0.875rem; color: #ef4444;">오류: ${errorMessage}</p>
-                        <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #94a3b8;">F12 키를 눌러 콘솔에서 자세한 오류를 확인하세요.</p>
-                        <button onclick="location.reload()"
-                                style="margin-top: 1.5rem; padding: 0.5rem 1rem; background-color: #0f172a; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+                        <p style="color: #ef4444;">오류: ${errorMessage}</p>
+                        <button onclick="location.reload()" style="margin-top: 1.5rem; padding: 0.5rem 1rem; background-color: #0f172a; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
                             다시 시도
                         </button>
                     </div>
                 `;
-            }
         }
+    }
 
-        // 페이지 로더 시작
-        new PageLoader();
-    </script>
+    // 페이지 로더 시작
+    new PageLoader();
+</script>
 </body>
 </html>
