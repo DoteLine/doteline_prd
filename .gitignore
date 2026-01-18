@@ -39,3 +39,6 @@ docker-compose.*.yml
 # Docker volumes & runtime data
 docker-data/
 docker-volume/
+
+#
+.md

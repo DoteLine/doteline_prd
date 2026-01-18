@@ -44,9 +44,9 @@ module.exports = {
       PORT: 3000
     },
 
-    // 로그 설정
-    error_file: './logs/error.log',
-    out_file: './logs/out.log',
+    // 로그 설정 (절대 경로 사용)
+    error_file: '/home/ubuntu/apps/doteline/logs/error.log',
+    out_file: '/home/ubuntu/apps/doteline/logs/out.log',
     log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
     merge_logs: true,
 
