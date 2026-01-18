@@ -357,6 +357,28 @@
 <!-- Swiper JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+    // SDK가 로드되자마자 즉시 초기화
+    (function() {
+        // index.html에서 주입된 PUBLIC_KEY를 사용합니다.
+        const publicKey = window.EMAILJS_CONFIG?.PUBLIC_KEY;
+        if (publicKey && typeof emailjs !== 'undefined') {
+            emailjs.init(publicKey);
+            console.log("✅ EmailJS SDK 초기화 완료");
+        }
+    })();
+</script>
+
+<script src="/src/utils/loadComponent.js"></script>
+<script src="/src/components/Carousel/Carousel.js"></script>
+<script src="/src/components/StoreSection/StoreSection.js"></script>
+<script src="/src/data/SolutionData.js"></script>
+<script src="/src/pages/Main/Main.js"></script>
+
+<script src="/src/components/Header/Header.js"></script>
+
 <!-- JavaScript -->
 <script src="/src/utils/loadComponent.js"></script>
 <script src="/src/components/Carousel/Carousel.js"></script>
