@@ -3,52 +3,51 @@
  */
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const { middleware: loggerMiddleware } = require('./middlewares/logger');
 
 // ============================================
-// 1. dotenv 설정 (최상단 배치)
+// 1. dotenv 설정 (주입식/설정파일 방식)
 // ============================================
 const dotenv = require('dotenv');
-dotenv.config({ path: path.join(__dirname, '../.env') });
+
+// 현재 파일(server.js) 위치를 기준으로 상위 폴더의 .env를 명확히 지칭합니다.
+const envPath = path.join(__dirname, '..', '.env');
+dotenv.config({ path: envPath });
 
 const app = express();
 
 // ============================================
-// 2. 환경 변수와 루트 디렉토리
+// 2. 환경 변수 로드 확인 (디버깅용 로그)
 // ============================================
 const PORT = process.env.PORT || 3000;
 const ROOT_DIR = path.join(__dirname, '..');
 
-// 환경변수 로드 확인 (디버깅 - 개발 환경에서만)
-if (process.env.NODE_ENV !== 'production') {
-    console.log('========================================');
-    console.log('환경변수 로드 확인:');
-    console.log('  NODE_ENV:', process.env.NODE_ENV || 'development');
-    console.log('  PORT:', PORT);
-    console.log('  KAKAO_MAP_API_KEY:', process.env.KAKAO_MAP_API_KEY ? 'OK' : 'MISSING');
-    console.log('  EMAILJS_PUBLIC_KEY:', process.env.EMAILJS_PUBLIC_KEY ? 'OK' : 'MISSING');
-    console.log('  EMAILJS_SERVICE_ID:', process.env.EMAILJS_SERVICE_ID ? 'OK' : 'MISSING');
-    console.log('  EMAILJS_TEMPLATE_ID:', process.env.EMAILJS_TEMPLATE_ID ? 'OK' : 'MISSING');
-    console.log('========================================');
-}
+console.log('========================================');
+console.log('  [환경변수 로드 상태 확인]');
+console.log('  설정파일 경로:', envPath);
+console.log('  EMAILJS_PUBLIC_KEY:', process.env.EMAILJS_PUBLIC_KEY || '❌ 로드 실패');
+console.log('  NODE_ENV:', process.env.NODE_ENV || 'development');
+console.log('========================================');
 
 // ============================================
-// 3. 미들웨어 및 라우트 순서 (중요!)
+// 3. 미들웨어 및 라우트 순서
 // ============================================
 
 // 로깅 미들웨어
 app.use(loggerMiddleware);
 
-// JSON, URL 인코딩 파싱
+// JSON 및 URL 인코딩 파싱
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// [핵심] 라우터 설정을 정적 파일 설정보다 '위'로 올립니다.
-// 그래야 /src/pages/Main/Main.html 요청을 라우터가 먼저 낚아채서 키를 주입합니다.
+/** * [핵심] 정적 파일 설정보다 라우터를 위에 배치합니다.
+ * routes/index.js에서 HTML 내 {{변수}}를 환경변수로 치환해줍니다.
+ */
 const routes = require('./routes');
 app.use('/', routes);
 
-// [정적 파일] 라우터에서 처리되지 않은 나머지(이미지, CSS, JS 파일들)를 처리
+// 정적 파일 서비스 (CSS, JS, 이미지 등)
 app.use('/src', express.static(path.join(ROOT_DIR, 'src')));
 app.use('/resources', express.static(path.join(ROOT_DIR, 'resources')));
 app.use(express.static(path.join(ROOT_DIR, 'public')));
@@ -66,12 +65,12 @@ app.use((err, req, res, next) => {
 // ============================================
 app.listen(PORT, () => {
     console.log('\n========================================');
-    console.log('  DOTELINE 웹서버가 시작되었습니다!');
+    console.log('  DOTELINE 웹서버가 정상 가동 중입니다.');
     console.log('========================================');
-    console.log(`  🌐 접속 도메인: http://${process.env.DOMAIN || 'localhost'}`);
-    console.log(`  🚀 실행 포트: ${PORT}`);
-    console.log(`  📁 루트 디렉토리: ${ROOT_DIR}`);
-    console.log(`  ⏰ 시작 시간: ${new Date().toLocaleString('ko-KR')}`);
+    console.log(`  🌐 도메인: http://${process.env.DOMAIN || 'localhost'}`);
+    console.log(`  🚀 포트: ${PORT}`);
+    console.log(`  📁 경로: ${ROOT_DIR}`);
+    console.log(`  ⏰ 시간: ${new Date().toLocaleString('ko-KR')}`);
     console.log('========================================\n');
 });
 

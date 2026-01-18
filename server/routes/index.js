@@ -35,8 +35,6 @@ function sendInjectedHtml(res, filePath) {
         Object.keys(ENV_MAPPINGS).forEach(key => {
             const val = ENV_MAPPINGS[key]();
 
-            console.log(`[치환로그] ${key} -> ${val}`);
-
             const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
             html = html.replace(regex, val);
         });
