@@ -30,16 +30,15 @@ const ENV_MAPPINGS = {
  */
 function sendInjectedHtml(res, filePath) {
     try {
-        if (!fs.existsSync(filePath)) {
-            return res.status(404).send('파일을 찾을 수 없습니다.');
-        }
-
         let html = fs.readFileSync(filePath, 'utf-8');
 
-        // 모든 환경변수 치환
         Object.keys(ENV_MAPPINGS).forEach(key => {
+            const val = ENV_MAPPINGS[key]();
+
+            console.log(`[치환로그] ${key} -> ${val}`);
+
             const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
-            html = html.replace(regex, ENV_MAPPINGS[key]());
+            html = html.replace(regex, val);
         });
 
         res.set('Content-Type', 'text/html');
