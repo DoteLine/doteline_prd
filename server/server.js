@@ -9,8 +9,7 @@ const { middleware: loggerMiddleware } = require('./middlewares/logger');
 // 1. dotenv 설정 (최상단 배치)
 // ============================================
 const dotenv = require('dotenv');
-const envPath = path.join('/home/ubuntu/apps/doteline/current/.env');
-dotenv.config({ path: envPath });
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const app = express();
 
