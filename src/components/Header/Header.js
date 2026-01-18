@@ -245,7 +245,20 @@ window.handleContactFormSubmit = async function(form, isMobile) {
 
 window.sendEmailViaEmailJS = async function(name, phone, message) {
     const config = window.EMAILJS_CONFIG || {};
+
+    // [중요] 디버깅 로그 추가: 브라우저 콘솔에서 이 값이 제대로 찍히는지 확인하세요!
+    console.log("EmailJS 전송 시도 데이터:", {
+        serviceID: config.SERVICE_ID,
+        templateID: config.TEMPLATE_ID,
+        publicKey: config.PUBLIC_KEY
+    });
+
     if (typeof emailjs === 'undefined') throw new Error('EmailJS SDK가 로드되지 않았습니다.');
+
+    // config 값이 비어있거나 '{{' 가 포함되어 있다면 에러
+    if (!config.SERVICE_ID || config.SERVICE_ID.includes('{{')) {
+        throw new Error('EmailJS 설정값이 서버로부터 주입되지 않았습니다.');
+    }
 
     return emailjs.send(config.SERVICE_ID, config.TEMPLATE_ID, {
         from_name: name,
