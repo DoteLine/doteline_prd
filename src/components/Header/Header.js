@@ -1,26 +1,20 @@
 /**
  * Header Component JavaScript
- * - 모바일 메뉴 토글 기능
- * - 솔루션 드롭다운 동적 생성
+ * 중복 선언 방지를 위해 모든 함수와 변수를 window 객체에 할당합니다.
  */
 
-/**
- * 파비콘 동적 추가
- */
-function initFavicon() {
+// 1. 파비콘 동적 추가
+window.initFavicon = function() {
     if (document.querySelector('link[rel="icon"]')) return;
     const favicon = document.createElement('link');
     favicon.rel = 'icon';
     favicon.href = '/resources/icon/favicon.ico?v=1';
     document.head.appendChild(favicon);
-}
+};
+window.initFavicon();
 
-initFavicon();
-
-/**
- * Header 초기화 실행기
- */
-function initHeader() {
+// 2. Header 초기화 실행기
+window.initHeader = function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
@@ -28,6 +22,7 @@ function initHeader() {
         return false;
     }
 
+    // 중복 등록 방지를 위해 기존 버튼 복제 후 교체
     const newMobileMenuBtn = mobileMenuBtn.cloneNode(true);
     mobileMenuBtn.parentNode.replaceChild(newMobileMenuBtn, mobileMenuBtn);
 
@@ -50,23 +45,21 @@ function initHeader() {
         });
     });
 
-    initSolutionsDropdown();
-    initMobileSolutionsDropdown();
-    initContactForm();
-    initMobileProductsDropdown();
+    window.initSolutionsDropdown();
+    window.initMobileSolutionsDropdown();
+    window.initContactForm();
+    window.initMobileProductsDropdown();
 
     return true;
-}
+};
 
-/**
- * 솔루션 드롭다운 (Desktop)
- */
-function initSolutionsDropdown() {
+// 3. 솔루션 드롭다운 (Desktop)
+window.initSolutionsDropdown = function() {
     const dropdownMenu = document.getElementById('solutionsDropdown');
     if (!dropdownMenu) return;
 
     if (typeof window.getAllSolutions !== 'function') {
-        setTimeout(initSolutionsDropdown, 100);
+        setTimeout(window.initSolutionsDropdown, 100);
         return;
     }
 
@@ -74,44 +67,42 @@ function initSolutionsDropdown() {
     const dropdownHTML = solutions.map((solution, index) => {
         const divider = (index === 4) ? '<div class="dropdown-divider"></div>' : '';
         return `
-      ${divider}
-      <a href="/src/pages/Solutions/SolutionDetail.html?id=${solution.id}" class="dropdown-item">
-        <span class="dropdown-item-label">${solution.label}</span>
-        <span class="dropdown-item-title">${solution.headline}</span>
-      </a>
-    `;
+            ${divider}
+            <a href="/src/pages/Solutions/SolutionDetail.html?id=${solution.id}" class="dropdown-item">
+                <span class="dropdown-item-label">${solution.label}</span>
+                <span class="dropdown-item-title">${solution.headline}</span>
+            </a>
+        `;
     }).join('');
 
     dropdownMenu.innerHTML = dropdownHTML;
-}
+};
 
-/**
- * 모바일 솔루션 드롭다운
- */
-function initMobileSolutionsDropdown() {
+// 4. 모바일 솔루션 드롭다운
+window.initMobileSolutionsDropdown = function() {
     const mobileDropdownTrigger = document.getElementById('mobileSolutionsTrigger');
     const mobileDropdownMenu = document.getElementById('mobileSolutionsDropdown');
 
     if (!mobileDropdownTrigger || !mobileDropdownMenu) return;
 
     if (typeof window.getAllSolutions !== 'function') {
-        setTimeout(initMobileSolutionsDropdown, 100);
+        setTimeout(window.initMobileSolutionsDropdown, 100);
         return;
     }
 
     const solutions = window.getAllSolutions();
     const mobileDropdownHTML = solutions.map(solution => `
-    <li>
-      <a href="/src/pages/Solutions/SolutionDetail.html?id=${solution.id}" class="mobile-dropdown-item">
-        <span class="mobile-dropdown-item-label">${solution.label}</span>
-        <span class="mobile-dropdown-item-title">${solution.headline}</span>
-      </a>
-    </li>
-  `).join('');
+        <li>
+            <a href="/src/pages/Solutions/SolutionDetail.html?id=${solution.id}" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-label">${solution.label}</span>
+                <span class="mobile-dropdown-item-title">${solution.headline}</span>
+            </a>
+        </li>
+    `).join('');
 
     mobileDropdownMenu.innerHTML = mobileDropdownHTML;
 
-    mobileDropdownTrigger.addEventListener('click', (e) => {
+    mobileDropdownTrigger.onclick = function(e) {
         const target = e.target;
         const clickedOnText = target.classList.contains('mobile-dropdown-text');
 
@@ -126,27 +117,20 @@ function initMobileSolutionsDropdown() {
             e.preventDefault();
             e.stopPropagation();
             const isOpen = mobileDropdownMenu.classList.contains('active');
-            if (isOpen) {
-                mobileDropdownMenu.classList.remove('active');
-                mobileDropdownTrigger.classList.remove('active');
-            } else {
-                mobileDropdownMenu.classList.add('active');
-                mobileDropdownTrigger.classList.add('active');
-            }
+            mobileDropdownMenu.classList.toggle('active', !isOpen);
+            mobileDropdownTrigger.classList.toggle('active', !isOpen);
         }
-    });
-}
+    };
+};
 
-/**
- * 모바일 제품 드롭다운
- */
-function initMobileProductsDropdown() {
+// 5. 모바일 제품 드롭다운
+window.initMobileProductsDropdown = function() {
     const mobileDropdownTrigger = document.getElementById('mobileProductsTrigger');
     const mobileDropdownMenu = document.getElementById('mobileProductsDropdown');
 
     if (!mobileDropdownTrigger || !mobileDropdownMenu) return;
 
-    mobileDropdownTrigger.addEventListener('click', (e) => {
+    mobileDropdownTrigger.onclick = function(e) {
         const target = e.target;
         const clickedOnText = target.classList.contains('mobile-dropdown-text');
 
@@ -161,21 +145,14 @@ function initMobileProductsDropdown() {
             e.preventDefault();
             e.stopPropagation();
             const isOpen = mobileDropdownMenu.classList.contains('active');
-            if (isOpen) {
-                mobileDropdownMenu.classList.remove('active');
-                mobileDropdownTrigger.classList.remove('active');
-            } else {
-                mobileDropdownMenu.classList.add('active');
-                mobileDropdownTrigger.classList.add('active');
-            }
+            mobileDropdownMenu.classList.toggle('active', !isOpen);
+            mobileDropdownTrigger.classList.toggle('active', !isOpen);
         }
-    });
-}
+    };
+};
 
-/**
- * 문의하기 폼 초기화
- */
-function initContactForm() {
+// 6. 문의하기 폼 초기화
+window.initContactForm = function() {
     const contactBadgeBtn = document.getElementById('contactBadgeBtn');
     const mobileContactBtn = document.getElementById('mobileContactBtn');
     const contactDropdown = document.getElementById('contactDropdown');
@@ -183,99 +160,63 @@ function initContactForm() {
     const contactModal = document.getElementById('contactModal');
     const contactModalClose = document.getElementById('contactModalClose');
     const contactModalOverlay = document.getElementById('contactModalOverlay');
-
     const contactForm = document.getElementById('contactForm');
     const contactFormMobile = document.getElementById('contactFormMobile');
 
-    const messageTextarea = document.getElementById('contactMessage');
-    const messageTextareaMobile = document.getElementById('contactMessageMobile');
-
     if (contactBadgeBtn) {
-        contactBadgeBtn.addEventListener('click', () => {
-            contactDropdown.classList.toggle('active');
-        });
+        contactBadgeBtn.onclick = () => contactDropdown.classList.toggle('active');
     }
 
     if (mobileContactBtn) {
-        mobileContactBtn.addEventListener('click', () => {
+        mobileContactBtn.onclick = () => {
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             if (mobileMenu) mobileMenu.classList.remove('active');
             if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
             contactModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-        });
+        };
     }
 
-    if (contactDropdownClose) {
-        contactDropdownClose.addEventListener('click', () => contactDropdown.classList.remove('active'));
-    }
-    if (contactModalClose) {
-        contactModalClose.addEventListener('click', () => {
-            contactModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-    if (contactModalOverlay) {
-        contactModalOverlay.addEventListener('click', () => {
-            contactModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
+    if (contactDropdownClose) contactDropdownClose.onclick = () => contactDropdown.classList.remove('active');
+    if (contactModalClose) contactModalClose.onclick = () => {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+    if (contactModalOverlay) contactModalOverlay.onclick = () => {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
 
-    document.addEventListener('click', (e) => {
-        if (contactBadgeBtn && !contactBadgeBtn.contains(e.target) && contactDropdown && !contactDropdown.contains(e.target)) {
-            contactDropdown.classList.remove('active');
-        }
-    });
-
+    // 카운터 설정
     const setupCounter = (textarea, displayId) => {
         const display = document.getElementById(displayId);
         if (textarea && display) {
-            textarea.addEventListener('input', () => { display.textContent = textarea.value.length; });
+            textarea.oninput = () => { display.textContent = textarea.value.length; };
         }
     };
-
-    setupCounter(messageTextarea, 'charCount');
-    setupCounter(messageTextareaMobile, 'charCountMobile');
+    setupCounter(document.getElementById('contactMessage'), 'charCount');
+    setupCounter(document.getElementById('contactMessageMobile'), 'charCountMobile');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            handleContactFormSubmit(contactForm, false);
-        });
+        contactForm.onsubmit = (e) => { e.preventDefault(); window.handleContactFormSubmit(contactForm, false); };
     }
     if (contactFormMobile) {
-        contactFormMobile.addEventListener('submit', (e) => {
-            e.preventDefault();
-            handleContactFormSubmit(contactFormMobile, true);
-        });
+        contactFormMobile.onsubmit = (e) => { e.preventDefault(); window.handleContactFormSubmit(contactFormMobile, true); };
     }
-}
+};
 
-async function sendLogToServer(status, error = null) {
-    try {
-        await fetch('/api/log/email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status, error }),
-        });
-    } catch (err) {
-        console.error('로그 전송 실패:', err);
-    }
-}
-
-async function handleContactFormSubmit(form, isMobile) {
+// 7. 메일 전송 처리
+window.handleContactFormSubmit = async function(form, isMobile) {
     const submitBtn = form.querySelector('.form-submit-btn');
     const messageDiv = form.querySelector('.form-message');
-
     const formData = new FormData(form);
     const name = formData.get('name').trim();
     const phone = formData.get('phone').trim();
     const message = formData.get('message').trim();
 
     if (!name || !phone || !message) {
-        showMessage(messageDiv, '모든 필드를 입력해주세요.', 'error');
+        window.showMessage(messageDiv, '모든 필드를 입력해주세요.', 'error');
         return;
     }
 
@@ -283,81 +224,60 @@ async function handleContactFormSubmit(form, isMobile) {
     submitBtn.disabled = true;
 
     try {
-        await sendEmailViaEmailJS(name, phone, message);
-        await sendLogToServer('success');
-        showMessage(messageDiv, '문의가 성공적으로 전송되었습니다!', 'success');
+        await window.sendEmailViaEmailJS(name, phone, message);
+        await window.sendLogToServer('success');
+        window.showMessage(messageDiv, '문의가 성공적으로 전송되었습니다!', 'success');
         form.reset();
 
-        const countId = isMobile ? 'charCountMobile' : 'charCount';
-        if (document.getElementById(countId)) document.getElementById(countId).textContent = '0';
-
         setTimeout(() => {
-            if (!isMobile) {
-                document.getElementById('contactDropdown').classList.remove('active');
-            } else {
-                document.getElementById('contactModal').classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            if (!isMobile) contactDropdown.classList.remove('active');
+            else { contactModal.classList.remove('active'); document.body.style.overflow = ''; }
             messageDiv.style.display = 'none';
         }, 2000);
-
     } catch (error) {
-        console.error('전송 실패:', error);
-        await sendLogToServer('error', error.message);
-        showMessage(messageDiv, '전송 중 오류가 발생했습니다.', 'error');
+        await window.sendLogToServer('error', error.message);
+        window.showMessage(messageDiv, '전송 중 오류가 발생했습니다.', 'error');
     } finally {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
     }
-}
+};
 
-/**
- * [중요] EmailJS 환경 변수를 안전하게 읽어오는 함수
- */
-async function sendEmailViaEmailJS(name, phone, message) {
-    // index.html에서 주입된 전역 변수를 우선적으로 참조합니다.
+window.sendEmailViaEmailJS = async function(name, phone, message) {
     const config = window.EMAILJS_CONFIG || {};
+    if (typeof emailjs === 'undefined') throw new Error('EmailJS SDK가 로드되지 않았습니다.');
 
-    const SERVICE_ID = config.SERVICE_ID;
-    const TEMPLATE_ID = config.TEMPLATE_ID;
-    const PUBLIC_KEY = config.PUBLIC_KEY;
-
-    if (typeof emailjs === 'undefined') {
-        throw new Error('EmailJS SDK가 로드되지 않았습니다.');
-    }
-
-    // 치환 여부 확인 ({{ }} 패턴이 남아있으면 누락으로 간주)
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY || SERVICE_ID.includes('{{')) {
-        console.error('환경변수 상태:', config);
-        throw new Error('EmailJS 설정값이 누락되었습니다. (서버 치환 실패)');
-    }
-
-    const templateParams = {
+    return emailjs.send(config.SERVICE_ID, config.TEMPLATE_ID, {
         from_name: name,
         from_phone: phone,
         message: message,
         to_email: 'phyun7007@gmail.com'
-    };
+    }, config.PUBLIC_KEY);
+};
 
-    return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-}
+window.sendLogToServer = async function(status, error = null) {
+    try {
+        await fetch('/api/log/email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status, error }),
+        });
+    } catch (err) {}
+};
 
-function showMessage(messageDiv, text, type) {
+window.showMessage = function(messageDiv, text, type) {
     if (!messageDiv) return;
     messageDiv.textContent = text;
     messageDiv.className = `form-message ${type}`;
     messageDiv.style.display = 'block';
-}
+};
 
-/**
- * 초기화 실행 (지연 실행 방어 로직)
- */
-const startInit = () => {
+// 8. 초기화 실행부
+window.startInit = function() {
     const maxRetries = 20;
     let retries = 0;
     const retryInterval = setInterval(() => {
-        // initHeader가 true를 반환(성공)하면 중단
-        if (initHeader() || retries >= maxRetries) {
+        if (window.initHeader() || retries >= maxRetries) {
             clearInterval(retryInterval);
         }
         retries++;
@@ -365,7 +285,7 @@ const startInit = () => {
 };
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startInit);
+    document.addEventListener('DOMContentLoaded', window.startInit);
 } else {
-    startInit();
+    window.startInit();
 }
