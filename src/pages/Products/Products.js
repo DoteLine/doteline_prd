@@ -5,45 +5,50 @@
 const featuredProductsData = {
     // 1. Hero 이미지
     hero: {
-        image: '/resources/featured/hero.jpg',
+        image: '/resources/productpage/mainforce_item/mainforce_item_1.jpg',
         alt: '주력상품 메인 이미지'
     },
     // 2. 첫 번째 텍스트 섹션
     text1: {
-        title: '최고의 LED 디스플레이 솔루션',
-        description: '도트라인은 최첨단 기술과 혁신적인 디자인으로 고객의 니즈에 맞는 최적의 LED 디스플레이를 제공합니다. 다양한 환경에서 탁월한 성능을 발휘하는 주력 제품들을 소개합니다.'
+        title: 'AI 기반 콘텐츠 업데이트',
+        description: 'AI를 활용해 영상, 이미지 모션 컨텐츠를 자유롭게 생성 및 즉시 업데이트 가능' +
+            '행사, 전시, 브랜드 캠페인 등 상황에 맞춰 실시간 콘텐츠 운영이 가능.'
     },
     // 3. 3등분 섹션 (왼쪽 이미지, 오른쪽 위 텍스트, 오른쪽 아래 이미지)
     threeSplit: {
         leftImage: {
-            src: '/resources/featured/three-left.jpg',
-            alt: '3등분 왼쪽 이미지'
+            src: '/resources/productpage/mainforce_item/mainforce_item_2.jpg',
+            alt: '실내-야외 모두 사용가능한 IP68 등급의 방수 설계' +
+                '방수 구조로 외부 환경에서도 안정적인 사용 가능' +
+                '실내 전시부터 야외 이벤트, 팝업, 페스티벌까지 폭넓게 대응 가능'
         },
         rightText: {
-            title: '뛰어난 화질',
-            description: '고해상도 디스플레이로 선명하고 생생한 영상을 구현합니다.'
+            title: '180도 접이식 구조',
+            description: '180도 폴딩이 가능한 설계로 보관 및 이동이 매우 간편' +
+                '설치, 철거 시간이 짧아 렌탈 환경에 최적화'
         },
         rightImage: {
-            src: '/resources/featured/three-right.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_3.jpg',
             alt: '3등분 오른쪽 아래 이미지'
         }
     },
     // 4. 4등분 섹션
     fourSplit: [
-        { type: 'image', src: '/resources/featured/four-1.jpg', alt: '4등분 이미지 1' },
-        { type: 'text', title: '다양한 설치 환경', description: '실내외 어디서든 최적의 성능을 발휘합니다.' },
-        { type: 'text', title: '에너지 효율', description: '저전력 고효율 설계로 운영 비용을 절감합니다.' },
-        { type: 'image', src: '/resources/featured/four-2.jpg', alt: '4등분 이미지 2' }
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_4.jpg', alt: '4등분 이미지 1' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_5.jpg', alt: '4등분 이미지 2' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_6.jpg', alt: '4등분 이미지 3' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_7.jpg', alt: '4등분 이미지 4' },
     ],
     // 5. 두 번째 텍스트 섹션
     text2: {
-        title: '신뢰할 수 있는 파트너',
-        description: '도트라인은 설계부터 설치, 유지보수까지 원스톱 서비스를 제공합니다. 고객 만족을 최우선으로 생각하며, 최고의 품질과 서비스로 보답하겠습니다.'
+        title: '모듈형 확장 시스템',
+        description: '제품 단위별 연결이 가능해 스크린 크기를 자요롭게 확대 가능<br>' +
+            '단일 사용부터 대형 렌탈 스크린까지 유연한 확장 가능'
     },
     // 6. 왼쪽 이미지 + 오른쪽 텍스트 (secondHero 스타일)
     secondHero1: {
         image: {
-            src: '/resources/featured/second-hero-1.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_8.jpg',
             alt: '세컨드 히어로 이미지 1'
         },
         title: '맞춤형 솔루션',
@@ -51,13 +56,13 @@ const featuredProductsData = {
     },
     // 7. 전체 이미지
     fullImage: {
-        src: '/resources/featured/full-image.jpg',
+        src: '/resources/productpage/mainforce_item/mainforce_item_9.jpg',
         alt: '전체 이미지'
     },
     // 8. 왼쪽 이미지 + 오른쪽 텍스트 (secondHero 스타일)
     secondHero2: {
         image: {
-            src: '/resources/featured/second-hero-2.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_10.jpg',
             alt: '세컨드 히어로 이미지 2'
         },
         title: '기술 지원 서비스',
@@ -176,7 +181,6 @@ const renderFeaturedProducts = () => {
 
 // 제품 카드 HTML 생성
 const createProductCard = (product) => {
-    console.log('check product', product)
     return `
         <div class="product-card-new" data-category="${product.category}" data-product-id="${product.id}" onclick="goToProductDetail(${product.id})"> 
             <div class="product-image-placeholder">
@@ -222,6 +226,45 @@ const renderProducts = (category = 'all') => {
     productsGrid.innerHTML = products.map(product => createProductCard(product)).join('');
 }
 
+// 슬라이딩 인디케이터 생성
+const createCategoryIndicator = () => {
+    const categoryGroup = document.querySelector('.category-group');
+    if (!categoryGroup || categoryGroup.querySelector('.category-indicator')) return;
+
+    const indicator = document.createElement('div');
+    indicator.className = 'category-indicator';
+    categoryGroup.appendChild(indicator);
+
+    // 초기 활성 버튼 위치로 인디케이터 설정
+    const activeButton = categoryGroup.querySelector('.category-btn.active, .category-btn2.active');
+    if (activeButton) {
+        updateIndicatorPosition(activeButton);
+    }
+};
+
+// 인디케이터 위치 업데이트
+const updateIndicatorPosition = (targetButton) => {
+    const categoryGroup = document.querySelector('.category-group');
+    const indicator = categoryGroup?.querySelector('.category-indicator');
+    if (!indicator || !targetButton) return;
+
+    const groupRect = categoryGroup.getBoundingClientRect();
+    const buttonRect = targetButton.getBoundingClientRect();
+
+    const left = buttonRect.left - groupRect.left;
+    const width = buttonRect.width;
+
+    indicator.style.left = `${left}px`;
+    indicator.style.width = `${width}px`;
+
+    // 주력상품 버튼인 경우 색상 변경
+    if (targetButton.classList.contains('category-btn2')) {
+        indicator.classList.add('featured-active');
+    } else {
+        indicator.classList.remove('featured-active');
+    }
+};
+
 // 버튼 활성화 상태 변경
 const updateActiveButton = (clickedButton) => {
     // 모든 카테고리 버튼 (category-btn, category-btn2 모두)
@@ -233,6 +276,9 @@ const updateActiveButton = (clickedButton) => {
 
     clickedButton.classList.add('active');
     clickedButton.setAttribute('aria-current', 'page');
+
+    // 인디케이터 위치 업데이트
+    updateIndicatorPosition(clickedButton);
 };
 
 
@@ -240,6 +286,9 @@ const updateActiveButton = (clickedButton) => {
 const initCategoryFilter = () => {
     const categoryGroup = document.querySelector('.category-group');
     if(!categoryGroup) return;
+
+    // 슬라이딩 인디케이터 생성
+    createCategoryIndicator();
 
     const buttons = categoryGroup.querySelectorAll('.category-btn');
     const featuredButton = categoryGroup.querySelector('.category-btn2');
@@ -273,6 +322,14 @@ const initCategoryFilter = () => {
             renderFeaturedProducts();
         });
     }
+
+    // 윈도우 리사이즈 시 인디케이터 위치 재계산
+    window.addEventListener('resize', () => {
+        const activeButton = categoryGroup.querySelector('.category-btn.active, .category-btn2.active');
+        if (activeButton) {
+            updateIndicatorPosition(activeButton);
+        }
+    });
 }
 
 
@@ -287,7 +344,8 @@ const getCategoryFromHash = () => {
         '#category-outdoor': 'outdoor',
         '#category-indoor': 'indoor',
         '#category-cob': 'cob',
-        '#category-all': 'all'
+        '#category-all': 'all',
+        '#featured': 'featured'
     };
 
     return hashMap[hash] || null;
@@ -313,12 +371,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const hashCategory = getCategoryFromHash();
 
     if (hashCategory) {
-        // 해시에 카테고리가 있으면 해당 카테고리 표시
-        const button = findButtonByCategory(hashCategory);
-        if (button) {
-            updateActiveButton(button);
+        if (hashCategory === 'featured') {
+            // 주력상품 해시인 경우
+            const featuredButton = document.querySelector('.category-btn2');
+            if (featuredButton) {
+                updateActiveButton(featuredButton);
+            }
+            renderFeaturedProducts();
+        } else {
+            // 해시에 카테고리가 있으면 해당 카테고리 표시
+            const button = findButtonByCategory(hashCategory);
+            if (button) {
+                updateActiveButton(button);
+            }
+            renderProducts(hashCategory);
         }
-        renderProducts(hashCategory);
     } else {
         // 해시가 없으면 전체 제품 표시
         renderProducts('all');
@@ -332,10 +399,19 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', () => {
     const hashCategory = getCategoryFromHash();
     if (hashCategory) {
-        const button = findButtonByCategory(hashCategory);
-        if (button) {
-            updateActiveButton(button);
+        if (hashCategory === 'featured') {
+            // 주력상품 해시인 경우
+            const featuredButton = document.querySelector('.category-btn2');
+            if (featuredButton) {
+                updateActiveButton(featuredButton);
+            }
+            renderFeaturedProducts();
+        } else {
+            const button = findButtonByCategory(hashCategory);
+            if (button) {
+                updateActiveButton(button);
+            }
+            renderProducts(hashCategory);
         }
-        renderProducts(hashCategory);
     }
 });

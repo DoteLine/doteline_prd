@@ -3,7 +3,7 @@
  */
 const express = require('express');
 const path = require('path');
-const logger = require('./middlewares/logger');
+const { middleware: loggerMiddleware } = require('./middlewares/logger');
 
 // ============================================
 // 1. dotenv 설정 (최상단 배치)
@@ -17,24 +17,28 @@ const app = express();
 // ============================================
 // 2. 환경 변수와 루트 디렉토리
 // ============================================
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 3000;
 const ROOT_DIR = path.join(__dirname, '..');
 
-// 환경변수 로드 확인 (디버깅)
-console.log('========================================');
-console.log('🔧 환경변수 로드 확인:');
-console.log('  EMAILJS_PUBLIC_KEY:', process.env.EMAILJS_PUBLIC_KEY || '❌ 누락');
-console.log('  EMAILJS_SERVICE_ID:', process.env.EMAILJS_SERVICE_ID || '❌ 누락');
-console.log('  EMAILJS_TEMPLATE_ID:', process.env.EMAILJS_TEMPLATE_ID || '❌ 누락');
-console.log('  PORT:', PORT);
-console.log('========================================');
+// 환경변수 로드 확인 (디버깅 - 개발 환경에서만)
+if (process.env.NODE_ENV !== 'production') {
+    console.log('========================================');
+    console.log('환경변수 로드 확인:');
+    console.log('  NODE_ENV:', process.env.NODE_ENV || 'development');
+    console.log('  PORT:', PORT);
+    console.log('  KAKAO_MAP_API_KEY:', process.env.KAKAO_MAP_API_KEY ? 'OK' : 'MISSING');
+    console.log('  EMAILJS_PUBLIC_KEY:', process.env.EMAILJS_PUBLIC_KEY ? 'OK' : 'MISSING');
+    console.log('  EMAILJS_SERVICE_ID:', process.env.EMAILJS_SERVICE_ID ? 'OK' : 'MISSING');
+    console.log('  EMAILJS_TEMPLATE_ID:', process.env.EMAILJS_TEMPLATE_ID ? 'OK' : 'MISSING');
+    console.log('========================================');
+}
 
 // ============================================
 // 3. 미들웨어 및 라우트 순서 (중요!)
 // ============================================
 
 // 로깅 미들웨어
-app.use(logger);
+app.use(loggerMiddleware);
 
 // JSON, URL 인코딩 파싱
 app.use(express.json());

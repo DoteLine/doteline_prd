@@ -29,3 +29,13 @@ Thumbs.db
 # Build directories (빌드 결과물이 있다면 제외)
 dist/
 build/
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker-compose.*.yml
+
+# Docker volumes & runtime data
+docker-data/
+docker-volume/

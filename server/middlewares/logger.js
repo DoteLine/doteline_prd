@@ -104,6 +104,36 @@ function writeLogToFile(logMessage) {
 }
 
 /**
+ * 로그 이벤트 처리 함수
+ * @param {Object} req - Express request 객체
+ * @param {string} message - 로그 메시지
+ */
+function logEvent(req, message) {
+    const now = new Date();
+    const timestamp = now.toLocaleString('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
+    const clientIP = req ? getClientIP(req) : 'Unknown';
+    const userAgent = req ? (req.headers['user-agent'] || '알 수 없음') : 'Unknown';
+
+    // 한 줄 형식의 로그 메시지
+    const logMessage = `[${timestamp}] ${message} | IP: ${clientIP} | User-Agent: ${userAgent}`;
+
+    // 콘솔 출력
+    console.log(logMessage);
+
+    // 파일에 저장
+    writeLogToFile(logMessage);
+}
+
+/**
  * 요청 로깅 미들웨어
  * 메인페이지('/') 접속 시에만 로그 출력 및 파일 저장
  * @param {Object} req - Express request 객체
@@ -116,29 +146,10 @@ function logger(req, res, next) {
 
     // GET 요청이면서 메인페이지('/') 접속인 경우에만 로그 출력
     if (method === 'GET' && url === '/') {
-        const now = new Date();
-        const timestamp = now.toLocaleString('ko-KR', {
-            timeZone: 'Asia/Seoul',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        });
-        const clientIP = getClientIP(req);
-        const userAgent = req.headers['user-agent'] || '알 수 없음';
-
-        // 한 줄 형식의 로그 메시지
-        const logMessage = `[${timestamp}] 메인페이지 접속 | IP: ${clientIP} | User-Agent: ${userAgent}`;
-
-        // 콘솔 출력
-        console.log(logMessage);
-
-        // 파일에 저장
-        writeLogToFile(logMessage);
+        logEvent(req, '메인페이지 접속');
 
         // 하루에 한 번만 오래된 로그 파일 정리 (운영 환경에서만)
+        const now = new Date();
         const today = now.toDateString();
         if (lastCleanupDate !== today) {
             lastCleanupDate = today;
@@ -150,4 +161,7 @@ function logger(req, res, next) {
     next();
 }
 
-module.exports = logger;
+module.exports = {
+    middleware: logger,
+    logEvent
+};

@@ -91,20 +91,10 @@
                 TEMPLATE_ID: '{{EMAILJS_TEMPLATE_ID}}'
             };
 
-            // 디버깅: 설정 확인
-            console.log('✅ EmailJS 설정 완료:', {
-                PUBLIC_KEY: window.EMAILJS_CONFIG.PUBLIC_KEY ? '설정됨 (길이: ' + window.EMAILJS_CONFIG.PUBLIC_KEY.length + ')' : '❌ 미설정',
-                SERVICE_ID: window.EMAILJS_CONFIG.SERVICE_ID || '❌ 미설정',
-                TEMPLATE_ID: window.EMAILJS_CONFIG.TEMPLATE_ID || '❌ 미설정',
-                전체_값: window.EMAILJS_CONFIG
-            });
-
-            // EmailJS 초기화
             if (window.EMAILJS_CONFIG.PUBLIC_KEY) {
                 emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
-                console.log('✅ EmailJS 초기화 완료');
             } else {
-                console.error('❌ EmailJS PUBLIC_KEY가 없어서 초기화 실패');
+                console.error('EmailJS PUBLIC_KEY가 없어서 초기화 실패');
             }
         })();
     </script>

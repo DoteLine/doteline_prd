@@ -1,24 +1,17 @@
-console.log('ProductDetail.js 로드됨');
-
 // URL에서 제품 ID 가져오기
 function getProductIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    console.log('URL에서 가져온 ID:', id);
     return parseInt(id);
 }
 
 // 제품 데이터 렌더링
 function renderProductDetail() {
-    console.log('renderProductDetail 시작');
-    
     // 1. 제품 ID 가져오기
     const productId = getProductIdFromUrl();
-    console.log('제품 ID:', productId);
 
     // 2. 제품 찾기
     const product = findProductById(productId);
-    console.log('찾은 제품:', product);
 
     // 3. 제품이 없으면 에러 메시지
     if (!product) {
@@ -199,14 +192,10 @@ function renderProductDetail() {
 
     // 10. 페이지 제목 변경
     document.title = `${product.name} | DOTELINE`;
-    
-    console.log('renderProductDetail 완료');
 }
 
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded - ProductDetail 페이지 로드');
-    
     // ProductData.js가 로드되었는지 확인
     if (typeof findProductById === 'undefined') {
         console.error('ProductData.js가 로드되지 않았습니다!');

@@ -86,7 +86,6 @@ function handleImageLoading() {
 function initPage() {
     initScrollAnimation();
     handleImageLoading();
-    console.log('Company Info page loaded successfully');
 }
 
 // 페이지 로드 완료 후 실행

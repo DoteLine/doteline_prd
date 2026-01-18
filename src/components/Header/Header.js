@@ -4,6 +4,22 @@
  * - 솔루션 드롭다운 동적 생성
  */
 
+/**
+ * 파비콘 동적 추가 (모든 페이지에 적용)
+ */
+function initFavicon() {
+  // 이미 파비콘이 있으면 스킵
+  if (document.querySelector('link[rel="icon"]')) return;
+
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.href = '/resources/icon/favicon.ico?v=1';
+  document.head.appendChild(favicon);
+}
+
+// 페이지 로드 시 파비콘 설정
+initFavicon();
+
 // Header 컴포넌트가 로드된 후 실행되도록 함수로 감싸기
 function initHeader() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -52,7 +68,6 @@ function initHeader() {
   // 모바일 제품 드롭다운 토글
   initMobileProductsDropdown();
 
-  console.log('Header initialized successfully');
   return true;
 }
 
@@ -349,6 +364,25 @@ function initContactForm() {
 }
 
 /**
+ * 서버에 로그 전송
+ * @param {string} status - 'success' 또는 'error'
+ * @param {string} error - 에러 메시지 (옵션)
+ */
+async function sendLogToServer(status, error = null) {
+    try {
+        await fetch('/api/log/email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status, error }),
+        });
+    } catch (err) {
+        console.error('로그 전송 실패:', err);
+    }
+}
+
+/**
  * 문의하기 폼 제출 처리
  * @param {HTMLFormElement} form - 제출할 폼
  * @param {boolean} isMobile - 모바일 여부
@@ -384,6 +418,9 @@ async function handleContactFormSubmit(form, isMobile) {
     // EmailJS로 이메일 전송
     await sendEmailViaEmailJS(name, phone, message);
 
+    // 성공 로그 전송
+    await sendLogToServer('success');
+
     // 성공 메시지
     showMessage(messageDiv, '문의가 성공적으로 전송되었습니다!', 'success');
 
@@ -409,6 +446,10 @@ async function handleContactFormSubmit(form, isMobile) {
 
   } catch (error) {
     console.error('Error sending email:', error);
+    
+    // 실패 로그 전송
+    await sendLogToServer('error', error.message || 'Unknown error');
+
     showMessage(messageDiv, '전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
   } finally {
     // 로딩 상태 해제
@@ -428,14 +469,6 @@ async function sendEmailViaEmailJS(name, phone, message) {
   const SERVICE_ID = window.EMAILJS_CONFIG?.SERVICE_ID;
   const TEMPLATE_ID = window.EMAILJS_CONFIG?.TEMPLATE_ID;
   const PUBLIC_KEY = window.EMAILJS_CONFIG?.PUBLIC_KEY;
-
-  // 디버깅: 환경변수 확인
-  console.log('EmailJS 설정:', {
-    SERVICE_ID,
-    TEMPLATE_ID,
-    PUBLIC_KEY: PUBLIC_KEY ? '설정됨' : '미설정',
-    전체_CONFIG: window.EMAILJS_CONFIG
-  });
 
   // EmailJS가 로드되지 않았을 경우
   if (typeof emailjs === 'undefined') {

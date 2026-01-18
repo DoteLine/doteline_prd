@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="도트라인 - 프리미엄 LED 드라이버 칩 솔루션">
-    <title>DOTELINE</title>
+
+    <!-- 기본 SEO 메타 태그 -->
+    <title>DOTELINE - 프리미엄 LED 드라이버 칩 솔루션</title>
+    <meta name="description" content="도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공합니다. 실내/야외 LED 디스플레이, 렌탈 스크린, COB LED 등 다양한 제품을 만나보세요.">
+    <meta name="keywords" content="LED, 드라이버칩, 디스플레이, 도트라인, DOTELINE, LED솔루션">
+    <meta name="author" content="DOTELINE">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{BASE_URL}}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DOTELINE">
+    <meta property="og:title" content="DOTELINE - 프리미엄 LED 드라이버 칩 솔루션">
+    <meta property="og:description" content="도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공합니다.">
+    <meta property="og:url" content="{{BASE_URL}}">
+    <meta property="og:image" content="{{BASE_URL}}/resources/og-image.jpg">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DOTELINE - 프리미엄 LED 드라이버 칩 솔루션">
+    <meta name="twitter:description" content="도트라인은 고품질 LED 드라이버 칩과 디스플레이 솔루션을 제공합니다.">
+    <meta name="twitter:image" content="{{BASE_URL}}/resources/og-image.jpg">
 
     <!-- 본고딕 폰트 -->
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
@@ -13,7 +34,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- Kakao Map SDK -->
+    <!--
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0573bc51bef6b08b56bbf847f3afe06a&autoload=false"></script>
+    -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{KAKAO_MAP_API_KEY}}&autoload=false"></script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/src/components/Header/Header.css">
@@ -46,7 +70,7 @@
                         180도 접이식 구조로 간편한 이동과 설치가 가능하며, 모듈 연결을 통해 대형 스크린까지 자유롭게 확장됩니다.
                     </p>
                     <div class="second-hero-btn-wrapper">
-                        <a href="/src/pages/Products/Products.html" class="second-hero-more-btn">
+                        <a href="/src/pages/Products/Products.html#featured" class="second-hero-more-btn">
                             <div class="svg-wrapper-1">
                                 <div class="svg-wrapper">
                                     <svg
@@ -83,45 +107,44 @@
             </div>
 
         <div class="products-grid-new">
-          <div class="product-card-new">
+          <a href="/productDetail?id=11" class="product-card-new" style="text-decoration: none; color: inherit;">
             <div class="product-image-placeholder">
                 <div class="second-hero-image">
                     <img src="resources/productpage/rental_indoor_500x500mm/Rental_Indoor_500x500mm_2_Product_Image.jpg" alt="LED Driver Chip" />
                 </div>
             </div>
             <div class="product-content-new">
-              <h3 class="product-title-new">Rental screen</h3>
+              <h3 class="product-title-new">렌탈 스크린</h3>
               <p class="product-description-new">500x500</p>
               <p class="product-description-new">P.1953/p2.5/p2.604/p2.976/p3.91</p>
             </div>
-          </div>
+          </a>
 
-          <div class="product-card-new">
+          <a href="/src/pages/Products/Products.html#featured" class="product-card-new" style="text-decoration: none; color: inherit;">
             <div class="product-image-placeholder">
                 <div class="second-hero-image">
-                    <!-- 이미지 경로 변경해야함 -->
-                    <img src="/resources/mainpage/product/Indoor_LED_Display.jpg" alt="LED Driver Chip" />
+                    <img src="/resources/mainpage/product/Stand_Ad_Led_256.jpg" alt="LED Driver Chip" />
                 </div>
             </div>
             <div class="product-content-new">
-              <h3 class="product-title-new">스텐드 렌탈 스크린</h3>
+              <h3 class="product-title-new">광고형 스탠드 스크린</h3>
               <p class="product-description-new">P2/P2.5/P3/P4/P5/P6/P8/P10</p>
             </div>
-          </div>
+          </a>
 
-          <div class="product-card-new">
+          <a href="/productDetail?id=31" class="product-card-new" style="text-decoration: none; color: inherit;">
             <div class="product-image-placeholder">
                 <div class="second-hero-image">
-                    <img src="resources/productpage/gob_waterproof/GOB_Waterproof_2_Product_Image.jpg" alt="LED Driver Chip" />
+                    <img src="/resources/mainpage/product/GOB_Waterproof.jpg" alt="LED Driver Chip" />
                 </div>
             </div>
             <div class="product-content-new">
-              <h3 class="product-title-new">GOB Waterproof</h3>
+              <h3 class="product-title-new">GOB 방수LED</h3>
               <p class="product-description-new">P1.25/P1.53/P1.86/P2/P2.5/P3.076/P4</p>
             </div>
-          </div>
+          </a>
 
-          <div class="product-card-new">
+          <a href="/productDetail?id=41" class="product-card-new" style="text-decoration: none; color: inherit;">
             <div class="product-image-placeholder">
                 <div class="second-hero-image">
                     <img src="resources/productpage/cob_p0.7/COB_P0.7_2_Product_Image.jpg" alt="LED Driver Chip" />
@@ -131,11 +154,11 @@
               <h3 class="product-title-new">COB P0.7</h3>
               <p class="product-description-new">익스트림 HD, 16:9 비율, 고휘도 회색조</p>
             </div>
-          </div>
+          </a>
         </div>
 
             <div class="products-more-btn-wrapper">
-                <a href="/src/pages/Products/Products.html" class="products-more-btn">
+                <a href="/product" class="products-more-btn">
                     <div class="svg-wrapper-1">
                         <div class="svg-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -339,27 +362,16 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
     (function(){
-        // 환경변수에서 EmailJS 설정 로드
         window.EMAILJS_CONFIG = {
             PUBLIC_KEY: '{{EMAILJS_PUBLIC_KEY}}',
             SERVICE_ID: '{{EMAILJS_SERVICE_ID}}',
             TEMPLATE_ID: '{{EMAILJS_TEMPLATE_ID}}'
         };
 
-        // 디버깅: 설정 확인
-        console.log('✅ EmailJS 설정 완료:', {
-            PUBLIC_KEY: window.EMAILJS_CONFIG.PUBLIC_KEY ? '설정됨 (길이: ' + window.EMAILJS_CONFIG.PUBLIC_KEY.length + ')' : '❌ 미설정',
-            SERVICE_ID: window.EMAILJS_CONFIG.SERVICE_ID || '❌ 미설정',
-            TEMPLATE_ID: window.EMAILJS_CONFIG.TEMPLATE_ID || '❌ 미설정',
-            전체_값: window.EMAILJS_CONFIG
-        });
-
-        // EmailJS 초기화
         if (window.EMAILJS_CONFIG.PUBLIC_KEY) {
             emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
-            console.log('✅ EmailJS 초기화 완료');
         } else {
-            console.error('❌ EmailJS PUBLIC_KEY가 없어서 초기화 실패');
+            console.error('EmailJS PUBLIC_KEY가 없어서 초기화 실패');
         }
     })();
 </script>

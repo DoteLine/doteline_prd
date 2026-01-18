@@ -1,38 +1,70 @@
+/**
+ * HTML 환경변수 주입 미들웨어
+ *
+ * HTML 파일 내의 {{ENV_VAR}} 패턴을 환경변수 값으로 치환합니다.
+ * 라우터에서 처리하지 않는 HTML 파일 요청을 처리합니다.
+ */
 const path = require('path');
 const fs = require('fs');
 
+/**
+ * 환경변수 맵핑 정의
+ * 카카오 맵 API 키는 NODE_ENV에 따라 개발용/운영용이 자동 선택됩니다.
+ */
+const ENV_MAPPINGS = {
+    KAKAO_MAP_API_KEY: () => {
+        const isProduction = process.env.NODE_ENV === 'production';
+        return isProduction
+            ? (process.env.KAKAO_MAP_API_KEY_PROD || '')
+            : (process.env.KAKAO_MAP_API_KEY_DEV || '');
+    },
+    EMAILJS_PUBLIC_KEY: () => process.env.EMAILJS_PUBLIC_KEY || '',
+    EMAILJS_SERVICE_ID: () => process.env.EMAILJS_SERVICE_ID || '',
+    EMAILJS_TEMPLATE_ID: () => process.env.EMAILJS_TEMPLATE_ID || '',
+    SITE_NAME: () => process.env.SITE_NAME || 'DOTELINE',
+    SITE_DESCRIPTION: () => process.env.SITE_DESCRIPTION || '',
+    SITE_KEYWORDS: () => process.env.SITE_KEYWORDS || '',
+    BASE_URL: () => process.env.BASE_URL || '',
+    DOMAIN: () => process.env.DOMAIN || 'localhost'
+};
+
+/**
+ * HTML 내 환경변수 치환 함수
+ */
+function injectEnvVars(html) {
+    Object.keys(ENV_MAPPINGS).forEach(key => {
+        const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+        html = html.replace(regex, ENV_MAPPINGS[key]());
+    });
+    return html;
+}
+
 function htmlEnvInjector(req, res, next) {
-    // 1. 요청 경로 확인 (브라우저가 fetch('/src/pages/Main/Main.html') 하는 경로)
-    // index.html 로딩도 대비하여 루트(/)와 Main.html을 모두 포함
-    const isTarget = req.url.toLowerCase().includes('main.html') || req.url === '/';
+    // HTML 파일 요청 확인
+    const isHtmlRequest = req.url.toLowerCase().endsWith('.html') || req.url === '/';
 
-    if (isTarget) {
-        // 2. 실제 물리적 파일 경로 (Main.html 위치)
-        const htmlPath = path.join(process.cwd(), 'src', 'pages', 'Main', 'Main.html');
+    if (isHtmlRequest) {
+        let targetPath;
 
-        // 만약 루트(/) 요청이라면 index.html을 타겟팅
-        const indexPath = path.join(process.cwd(), 'public', 'index.html');
-        const targetPath = req.url === '/' ? indexPath : htmlPath;
+        if (req.url === '/') {
+            targetPath = path.join(process.cwd(), 'public', 'index.html');
+        } else {
+            targetPath = path.join(process.cwd(), req.url);
+        }
 
         try {
             if (fs.existsSync(targetPath)) {
                 let html = fs.readFileSync(targetPath, 'utf-8');
-
-                // 3. API 키 가져오기
-                const key = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV || '';
-
-                // 4. {{KAKAO_MAP_API_KEY}} 치환
-                const renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, key);
+                const renderedHtml = injectEnvVars(html);
 
                 res.set('Content-Type', 'text/html');
                 return res.send(renderedHtml);
             }
         } catch (err) {
-            console.error('[HTML Injector] ❌ 에러 발생:', err);
+            console.error('[HTML Injector] 에러 발생:', err);
         }
     }
 
-    // 타겟이 아니거나 파일이 없으면 정적 파일 서버로 넘김
     next();
 }
 

@@ -2,22 +2,31 @@
   "name": "doteline-web",
   "version": "1.0.0",
   "description": "DOTELINE - LED 드라이버 칩 솔루션 웹사이트",
-  "main": "web.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node web.js",
-    "dev": "nodemon web.js",
-    "pm2:start": "pm2 start ecosystem.config.js",
+    "start": "node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
+    "prod": "NODE_ENV=production node app.js",
+    "pm2:dev": "pm2 start ecosystem.config.js --env development",
+    "pm2:prod": "pm2 start ecosystem.config.js --env production",
     "pm2:stop": "pm2 stop doteline-web",
     "pm2:restart": "pm2 restart doteline-web",
+    "pm2:reload": "pm2 reload doteline-web",
     "pm2:delete": "pm2 delete doteline-web",
     "pm2:logs": "pm2 logs doteline-web",
-    "pm2:status": "pm2 status"
+    "pm2:monit": "pm2 monit",
+    "pm2:status": "pm2 status",
+    "docker:build": "docker build -t doteline-web .",
+    "docker:run": "docker run -d -p 8001:8001 --env-file .env --name doteline-web doteline-web",
+    "docker:stop": "docker stop doteline-web && docker rm doteline-web"
   },
   "keywords": [
     "doteline",
     "led",
     "driver",
-    "chip"
+    "chip",
+    "display",
+    "solution"
   ],
   "author": "DOTELINE Team",
   "license": "ISC",
@@ -26,9 +35,10 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "nodemon": "^3.0.2"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   }
 }

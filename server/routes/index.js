@@ -5,8 +5,25 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const router = express.Router();
+const { logEvent } = require('../middlewares/logger');
 
 const ROOT_DIR = path.join(__dirname, '..', '..');
+
+/**
+ * 환경변수 맵핑 정의
+ * HTML 템플릿의 {{VAR_NAME}} 패턴을 환경변수로 치환
+ */
+const ENV_MAPPINGS = {
+    KAKAO_MAP_API_KEY: () => process.env.KAKAO_MAP_API_KEY || '',
+    EMAILJS_PUBLIC_KEY: () => process.env.EMAILJS_PUBLIC_KEY || '',
+    EMAILJS_SERVICE_ID: () => process.env.EMAILJS_SERVICE_ID || '',
+    EMAILJS_TEMPLATE_ID: () => process.env.EMAILJS_TEMPLATE_ID || '',
+    SITE_NAME: () => process.env.SITE_NAME || 'DOTELINE',
+    SITE_DESCRIPTION: () => process.env.SITE_DESCRIPTION || '',
+    SITE_KEYWORDS: () => process.env.SITE_KEYWORDS || '',
+    BASE_URL: () => process.env.BASE_URL || '',
+    DOMAIN: () => process.env.DOMAIN || 'localhost'
+};
 
 /**
  * HTML 파일을 읽어 환경변수를 주입하고 전송하는 공통 함수
@@ -19,24 +36,16 @@ function sendInjectedHtml(res, filePath) {
 
         let html = fs.readFileSync(filePath, 'utf-8');
 
-        // 카카오 맵 API 키 (PROD 우선, 없으면 DEV)
-        const kakaoKey = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV || '';
-
-        // EmailJS 환경변수
-        const emailjsPublicKey = process.env.EMAILJS_PUBLIC_KEY || '';
-        const emailjsServiceId = process.env.EMAILJS_SERVICE_ID || '';
-        const emailjsTemplateId = process.env.EMAILJS_TEMPLATE_ID || '';
-
-        // 환경변수 치환
-        let renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, kakaoKey);
-        renderedHtml = renderedHtml.replace(/\{\{EMAILJS_PUBLIC_KEY\}\}/g, emailjsPublicKey);
-        renderedHtml = renderedHtml.replace(/\{\{EMAILJS_SERVICE_ID\}\}/g, emailjsServiceId);
-        renderedHtml = renderedHtml.replace(/\{\{EMAILJS_TEMPLATE_ID\}\}/g, emailjsTemplateId);
+        // 모든 환경변수 치환
+        Object.keys(ENV_MAPPINGS).forEach(key => {
+            const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+            html = html.replace(regex, ENV_MAPPINGS[key]());
+        });
 
         res.set('Content-Type', 'text/html');
-        return res.send(renderedHtml);
+        return res.send(html);
     } catch (err) {
-        console.error('[Router] ❌ HTML 주입 에러:', err);
+        console.error('[Router] HTML 주입 에러:', err);
         return res.status(500).send('서버 오류 발생');
     }
 }
@@ -77,6 +86,25 @@ router.get('/productDetail', (req, res) => {
  */
 router.get('/solution', (req, res) => {
     sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
+});
+
+// ============================================
+// API 라우트
+// ============================================
+
+/**
+ * 이메일 전송 로그 기록 API
+ */
+router.post('/api/log/email', (req, res) => {
+    const { status, error } = req.body;
+    
+    if (status === 'success') {
+        logEvent(req, '문의 메일 전송 성공');
+    } else {
+        logEvent(req, `문의 메일 전송 실패: ${error || '알 수 없는 오류'}`);
+    }
+    
+    res.json({ success: true });
 });
 
 module.exports = router;
