@@ -47,7 +47,7 @@ body {
 .hero-background {
   position: absolute;
   inset: 0;
-  background-image: url('/resources/mainpage/hero1.jpg');
+  background-image: url('/resources/mainpage/hero1.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -5,7 +5,8 @@
 const featuredProductsData = {
     // 1. Hero 이미지
     hero: {
-        image: '/resources/productpage/mainforce_item/mainforce_item_1.jpg',
+        image: '/resources/productpage/mainforce_item/mainforce_item_1.webp' +
+            '',
         alt: '주력상품 메인 이미지'
     },
     // 2. 첫 번째 텍스트 섹션
@@ -17,7 +18,8 @@ const featuredProductsData = {
     // 3. 3등분 섹션 (왼쪽 이미지, 오른쪽 위 텍스트, 오른쪽 아래 이미지)
     threeSplit: {
         leftImage: {
-            src: '/resources/productpage/mainforce_item/mainforce_item_2.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_2.webp' +
+                '',
             alt: '실내-야외 모두 사용가능한 IP68 등급의 방수 설계' +
                 '방수 구조로 외부 환경에서도 안정적인 사용 가능' +
                 '실내 전시부터 야외 이벤트, 팝업, 페스티벌까지 폭넓게 대응 가능'
@@ -28,16 +30,21 @@ const featuredProductsData = {
                 '설치, 철거 시간이 짧아 렌탈 환경에 최적화'
         },
         rightImage: {
-            src: '/resources/productpage/mainforce_item/mainforce_item_3.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_3.webp' +
+                '',
             alt: '3등분 오른쪽 아래 이미지'
         }
     },
     // 4. 4등분 섹션
     fourSplit: [
-        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_4.jpg', alt: '4등분 이미지 1' },
-        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_5.jpg', alt: '4등분 이미지 2' },
-        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_6.jpg', alt: '4등분 이미지 3' },
-        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_7.jpg', alt: '4등분 이미지 4' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_4.webp' +
+                '', alt: '4등분 이미지 1' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_5.webp' +
+                '', alt: '4등분 이미지 2' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_6.webp' +
+                '', alt: '4등분 이미지 3' },
+        { type: 'image', src: '/resources/productpage/mainforce_item/mainforce_item_7.webp' +
+                '', alt: '4등분 이미지 4' },
     ],
     // 5. 두 번째 텍스트 섹션
     text2: {
@@ -48,7 +55,8 @@ const featuredProductsData = {
     // 6. 왼쪽 이미지 + 오른쪽 텍스트 (secondHero 스타일)
     secondHero1: {
         image: {
-            src: '/resources/productpage/mainforce_item/mainforce_item_8.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_8.webp' +
+                '',
             alt: '세컨드 히어로 이미지 1'
         },
         title: '맞춤형 솔루션',
@@ -56,13 +64,15 @@ const featuredProductsData = {
     },
     // 7. 전체 이미지
     fullImage: {
-        src: '/resources/productpage/mainforce_item/mainforce_item_9.jpg',
+        src: '/resources/productpage/mainforce_item/mainforce_item_9.webp' +
+            '',
         alt: '전체 이미지'
     },
     // 8. 왼쪽 이미지 + 오른쪽 텍스트 (secondHero 스타일)
     secondHero2: {
         image: {
-            src: '/resources/productpage/mainforce_item/mainforce_item_10.jpg',
+            src: '/resources/productpage/mainforce_item/mainforce_item_10.webp' +
+                '',
             alt: '세컨드 히어로 이미지 2'
         },
         title: '기술 지원 서비스',

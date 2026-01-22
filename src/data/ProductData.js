@@ -16,15 +16,15 @@ function generateProductImages(productName, detailImageCount = 7) {
     const basePath = `/resources/productpage/${folderName}`;
 
     // 배너 이미지
-    const bannerImage = `${basePath}/${fileName}_1_head_copy.jpg`
+    const bannerImage = `${basePath}/${fileName}_1_head_copy.webp`
 
     // 대표이미지 배열 생성 (총 5개: Product_Image, Product_Image1 ~ Product_Image4)
     const images = [
-        `${basePath}/${fileName}_2_Product_Image.jpg`,  // 첫 번째는 숫자 없음
-        `${basePath}/${fileName}_2_Product_Image1.jpg`,
-        `${basePath}/${fileName}_2_Product_Image2.jpg`,
-        `${basePath}/${fileName}_2_Product_Image3.jpg`,
-        `${basePath}/${fileName}_2_Product_Image4.jpg`
+        `${basePath}/${fileName}_2_Product_Image.webp`,  // 첫 번째는 숫자 없음
+        `${basePath}/${fileName}_2_Product_Image1.webp`,
+        `${basePath}/${fileName}_2_Product_Image2.webp`,
+        `${basePath}/${fileName}_2_Product_Image3.webp`,
+        `${basePath}/${fileName}_2_Product_Image4.webp`
     ];
 
 
@@ -33,18 +33,18 @@ function generateProductImages(productName, detailImageCount = 7) {
 
     // 상세이미지 배열 생성
     const detailImages = [
-        `${basePath}/${fileName}_3_Product_Key_Descriptions.jpg`,
+        `${basePath}/${fileName}_3_Product_Key_Descriptions.webp`,
     ];
 
     // 4-7번 이미지까지 상세이미지 중 Product_Advantages
     const advantagesCount = detailImageCount -3;
     for(let i = 0; i < advantagesCount; i++) {
-        detailImages.push(`${basePath}/${fileName}_${4+i}_Product_Advantages.jpg`);
+        detailImages.push(`${basePath}/${fileName}_${4+i}_Product_Advantages.webp`);
     }
 
     // 상세이미지 중 8,9번
-    detailImages.push(`${basePath}/${fileName}_${4 + advantagesCount}_Product_Specifications.jpg`);
-    detailImages.push(`${basePath}/${fileName}_${5 + advantagesCount}_Product_usage_photos.jpg`);
+    detailImages.push(`${basePath}/${fileName}_${4 + advantagesCount}_Product_Specifications.webp`);
+    detailImages.push(`${basePath}/${fileName}_${5 + advantagesCount}_Product_usage_photos.webp`);
 
     return {
         bannerImage,
