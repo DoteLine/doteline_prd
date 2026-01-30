@@ -937,6 +937,10 @@ pm2 reload doteline-web
 # 만약 환경변수 관련 수정하면 
 pm2 restart doteline-web
 
+pm2 stop doteline-web
+pm2 start doteline-web
+
+
 # 7. 정상 작동 확인
 pm2 status
 15.2 긴급 수정 및 롤백 (Rollback)

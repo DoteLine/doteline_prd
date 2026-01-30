@@ -192,6 +192,105 @@ function renderProductDetail() {
 
     // 10. 페이지 제목 변경
     document.title = `${product.name} | DOTELINE`;
+
+    // 11. 메타 태그 동적 업데이트 (Open Graph, Twitter Card)
+    updateMetaTags(product);
+
+    // 12. 구조화 데이터(JSON-LD) 삽입
+    injectProductSchema(product);
+}
+
+/**
+ * Open Graph 및 Twitter Card 메타 태그 동적 업데이트
+ * @param {Object} product - 제품 데이터 객체
+ */
+function updateMetaTags(product) {
+    const domain = window.location.origin;
+    const currentUrl = window.location.href;
+    const description = product.specs?.description || `${product.name} - DOTELINE의 프리미엄 LED 디스플레이 솔루션`;
+
+    // 대표 이미지 URL (첫 번째 이미지 사용, 없으면 Cover.png)
+    let imageUrl = `${domain}/resources/mainpage/Cover.png`;
+    if (product.images && product.images.length > 0) {
+        const firstImage = product.images[0];
+        imageUrl = firstImage.startsWith('http') ? firstImage : `${domain}${firstImage}`;
+    }
+
+    // 메타 태그 업데이트 헬퍼 함수
+    function setMetaTag(selector, attribute, value) {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.setAttribute(attribute, value);
+        }
+    }
+
+    // 기본 description 업데이트
+    setMetaTag('meta[name="description"]', 'content', description);
+
+    // Open Graph 태그 업데이트
+    setMetaTag('meta[property="og:title"]', 'content', `${product.name} | DOTELINE`);
+    setMetaTag('meta[property="og:description"]', 'content', description);
+    setMetaTag('meta[property="og:image"]', 'content', imageUrl);
+    setMetaTag('meta[property="og:url"]', 'content', currentUrl);
+
+    // Twitter Card 태그 업데이트
+    setMetaTag('meta[name="twitter:title"]', 'content', `${product.name} | DOTELINE`);
+    setMetaTag('meta[name="twitter:description"]', 'content', description);
+    setMetaTag('meta[name="twitter:image"]', 'content', imageUrl);
+}
+
+/**
+ * Google Rich Results용 Product 구조화 데이터 삽입
+ * @param {Object} product - 제품 데이터 객체
+ */
+function injectProductSchema(product) {
+    // 기존에 삽입된 JSON-LD가 있다면 제거 (SPA 환경 고려)
+    const existingScript = document.getElementById('product-json-ld');
+    if (existingScript) {
+        existingScript.remove();
+    }
+
+    // 현재 페이지 URL
+    const currentUrl = window.location.href;
+    
+    // 이미지 절대 경로 변환 (도메인이 포함된 전체 URL 필요)
+    const domain = window.location.origin;
+    const imageUrls = product.images ? product.images.map(img => 
+        img.startsWith('http') ? img : `${domain}${img}`
+    ) : [];
+
+    // 대표 이미지가 없는 경우 로고나 기본 이미지 사용
+    if (imageUrls.length === 0) {
+        imageUrls.push(`${domain}/resources/logo.png`);
+    }
+
+    // 구조화 데이터 객체 생성
+    const schemaData = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": product.name,
+        "image": imageUrls,
+        "description": product.specs?.description || `${product.name} - DOTELINE의 프리미엄 LED 디스플레이 솔루션`,
+        "brand": {
+            "@type": "Brand",
+            "name": "DOTELINE"
+        },
+        "sku": `DOTELINE-${product.id}`,
+        "mpn": `DOTELINE-${product.id}`,
+        "manufacturer": {
+            "@type": "Organization",
+            "name": "DOTELINE",
+            "url": domain
+        },
+        "category": product.specs?.tags ? product.specs.tags.join(', ') : "LED 디스플레이"
+    };
+
+    // 스크립트 태그 생성 및 삽입
+    const script = document.createElement('script');
+    script.id = 'product-json-ld';
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schemaData);
+    document.head.appendChild(script);
 }
 
 // 페이지 로드 시 실행
