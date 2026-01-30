@@ -113,52 +113,6 @@ function initSmoothScroll() {
   });
 }
 
-// FAQ 초기화 함수
-function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    if (faqItems.length === 0) {
-        console.warn('FAQ items not found');
-        return;
-    }
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-
-        if (!question || !answer) {
-            console.warn('FAQ question or answer not found', item);
-            return;
-        }
-
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-
-            // 한 번에 하나만 열리도록 하려면 아래 주석 해제 (One-open policy)
-            /*
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                    const otherAnswer = otherItem.querySelector('.faq-answer');
-                    if (otherAnswer) {
-                        otherAnswer.style.maxHeight = null;
-                    }
-                }
-            });
-            */
-
-            if (isActive) {
-                item.classList.remove('active');
-                answer.style.maxHeight = null;
-            } else {
-                item.classList.add('active');
-                // scrollHeight를 이용해 실제 컨텐츠 높이만큼 확장
-                answer.style.maxHeight = answer.scrollHeight + "px";
-            }
-        });
-    });
-}
-
 // 기능 초기화 함수를 별도로 분리
 async function setupMainPage() {
     // StoreSection 컴포넌트 로드
@@ -171,7 +125,6 @@ async function setupMainPage() {
     setTimeout(() => {
         initScrollAnimation();
         initSmoothScroll();
-        initFAQ();
     }, 100);
 }
 

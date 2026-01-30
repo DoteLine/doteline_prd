@@ -18,9 +18,6 @@ const ENV_MAPPINGS = {
             ? (process.env.KAKAO_MAP_API_KEY_PROD || '')
             : (process.env.KAKAO_MAP_API_KEY_DEV || '');
     },
-    EMAILJS_PUBLIC_KEY: () => process.env.EMAILJS_PUBLIC_KEY || '',
-    EMAILJS_SERVICE_ID: () => process.env.EMAILJS_SERVICE_ID || '',
-    EMAILJS_TEMPLATE_ID: () => process.env.EMAILJS_TEMPLATE_ID || '',
     SITE_NAME: () => process.env.SITE_NAME || 'DOTELINE',
     SITE_DESCRIPTION: () => process.env.SITE_DESCRIPTION || '',
     SITE_KEYWORDS: () => process.env.SITE_KEYWORDS || '',

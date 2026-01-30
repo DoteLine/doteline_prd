@@ -225,7 +225,6 @@ window.handleContactFormSubmit = async function(form, isMobile) {
 
     try {
         await window.sendEmailViaEmailJS(name, phone, message);
-        await window.sendLogToServer('success');
         window.showMessage(messageDiv, '문의가 성공적으로 전송되었습니다!', 'success');
         form.reset();
 
@@ -235,7 +234,6 @@ window.handleContactFormSubmit = async function(form, isMobile) {
             messageDiv.style.display = 'none';
         }, 2000);
     } catch (error) {
-        await window.sendLogToServer('error', error.message);
         window.showMessage(messageDiv, '전송 중 오류가 발생했습니다.', 'error');
     } finally {
         submitBtn.classList.remove('loading');
@@ -244,38 +242,19 @@ window.handleContactFormSubmit = async function(form, isMobile) {
 };
 
 window.sendEmailViaEmailJS = async function(name, phone, message) {
-    const config = window.EMAILJS_CONFIG || {};
-
-    // [중요] 디버깅 로그 추가: 브라우저 콘솔에서 이 값이 제대로 찍히는지 확인하세요!
-    console.log("EmailJS 전송 시도 데이터:", {
-        serviceID: config.SERVICE_ID,
-        templateID: config.TEMPLATE_ID,
-        publicKey: config.PUBLIC_KEY
+    const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, message })
     });
 
-    if (typeof emailjs === 'undefined') throw new Error('EmailJS SDK가 로드되지 않았습니다.');
+    const result = await response.json();
 
-    // config 값이 비어있거나 '{{' 가 포함되어 있다면 에러
-    if (!config.SERVICE_ID || config.SERVICE_ID.includes('{{')) {
-        throw new Error('EmailJS 설정값이 서버로부터 주입되지 않았습니다.');
+    if (!response.ok || !result.success) {
+        throw new Error(result.error || '이메일 전송에 실패했습니다.');
     }
 
-    return emailjs.send(config.SERVICE_ID, config.TEMPLATE_ID, {
-        from_name: name,
-        from_phone: phone,
-        message: message,
-        to_email: 'phyun7007@gmail.com'
-    }, config.PUBLIC_KEY);
-};
-
-window.sendLogToServer = async function(status, error = null) {
-    try {
-        await fetch('/api/log/email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status, error }),
-        });
-    } catch (err) {}
+    return result;
 };
 
 window.showMessage = function(messageDiv, text, type) {

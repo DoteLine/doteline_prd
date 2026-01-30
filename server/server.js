@@ -26,7 +26,7 @@ const ROOT_DIR = path.join(__dirname, '..');
 console.log('========================================');
 console.log('  [환경변수 로드 상태 확인]');
 console.log('  설정파일 경로:', envPath);
-console.log('  EMAILJS_PUBLIC_KEY:', process.env.EMAILJS_PUBLIC_KEY || '❌ 로드 실패');
+console.log('  EMAILJS 설정:', process.env.EMAILJS_PUBLIC_KEY ? '✅ 로드 완료' : '❌ 로드 실패');
 console.log('  NODE_ENV:', process.env.NODE_ENV || 'development');
 console.log('========================================');
 

@@ -34,10 +34,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- Kakao Map SDK -->
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0573bc51bef6b08b56bbf847f3afe06a&autoload=false"></script>
     <!--
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{KAKAO_MAP_API_KEY}}&autoload=false"></script>
-    -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c0674494f9d316051d412ea0ad6b82f&autoload=false"></script>
+    -->
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/src/components/Header/Header.css">
     <link rel="stylesheet" href="/src/components/Footer/Footer.css">
@@ -309,7 +310,7 @@
 
             <div class="faq-accordion">
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" onclick="var item=this.parentElement,ans=item.querySelector('.faq-answer');item.classList.toggle('active');ans.style.maxHeight=item.classList.contains('active')?ans.scrollHeight+'px':null">
                         <span class="faq-q-text">도트라인 LED 드라이버 칩의 주요 장점은 무엇인가요?</span>
                         <span class="faq-toggle-icon"></span>
                     </button>
@@ -321,7 +322,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" onclick="var item=this.parentElement,ans=item.querySelector('.faq-answer');item.classList.toggle('active');ans.style.maxHeight=item.classList.contains('active')?ans.scrollHeight+'px':null">
                         <span class="faq-q-text">대량 구매 및 커스텀 솔루션 상담이 가능한가요?</span>
                         <span class="faq-toggle-icon"></span>
                     </button>
@@ -333,7 +334,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" onclick="var item=this.parentElement,ans=item.querySelector('.faq-answer');item.classList.toggle('active');ans.style.maxHeight=item.classList.contains('active')?ans.scrollHeight+'px':null">
                         <span class="faq-q-text">제품 보증 기간 및 사후 서비스(AS)는 어떻게 되나요?</span>
                         <span class="faq-toggle-icon"></span>
                     </button>
@@ -356,20 +357,6 @@
 
 <!-- Swiper JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-<script type="text/javascript">
-    // SDK가 로드되자마자 즉시 초기화
-    (function() {
-        // index.html에서 주입된 PUBLIC_KEY를 사용합니다.
-        const publicKey = window.EMAILJS_CONFIG?.PUBLIC_KEY;
-        if (publicKey && typeof emailjs !== 'undefined') {
-            emailjs.init(publicKey);
-            console.log("✅ EmailJS SDK 초기화 완료");
-        }
-    })();
-</script>
 
 <script src="/src/utils/loadComponent.js"></script>
 <script src="/src/components/Carousel/Carousel.js"></script>

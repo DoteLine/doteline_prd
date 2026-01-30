@@ -15,9 +15,6 @@ const ROOT_DIR = path.join(__dirname, '..', '..');
  */
 const ENV_MAPPINGS = {
     KAKAO_MAP_API_KEY: () => process.env.KAKAO_MAP_API_KEY || '',
-    EMAILJS_PUBLIC_KEY: () => (process.env.EMAILJS_PUBLIC_KEY || '').trim(),
-    EMAILJS_SERVICE_ID: () => (process.env.EMAILJS_SERVICE_ID || '').trim(),
-    EMAILJS_TEMPLATE_ID: () => (process.env.EMAILJS_TEMPLATE_ID || '').trim(),
     SITE_NAME: () => process.env.SITE_NAME || 'DOTELINE',
     SITE_DESCRIPTION: () => process.env.SITE_DESCRIPTION || '',
     SITE_KEYWORDS: () => process.env.SITE_KEYWORDS || '',
@@ -90,18 +87,61 @@ router.get('/solution', (req, res) => {
 // ============================================
 
 /**
- * 이메일 전송 로그 기록 API
+ * 이메일 전송 API (서버 사이드 프록시)
+ * 클라이언트에 EmailJS 키값을 노출하지 않고 서버에서 직접 전송
  */
-router.post('/api/log/email', (req, res) => {
-    const { status, error } = req.body;
-    
-    if (status === 'success') {
-        logEvent(req, '문의 메일 전송 성공');
-    } else {
-        logEvent(req, `문의 메일 전송 실패: ${error || '알 수 없는 오류'}`);
+router.post('/api/send-email', async (req, res) => {
+    const { name, phone, message } = req.body;
+
+    if (!name || !phone || !message) {
+        return res.status(400).json({ success: false, error: '모든 필드를 입력해주세요.' });
     }
-    
-    res.json({ success: true });
+
+    const serviceID = (process.env.EMAILJS_SERVICE_ID || '').trim();
+    const templateID = (process.env.EMAILJS_TEMPLATE_ID || '').trim();
+    const publicKey = (process.env.EMAILJS_PUBLIC_KEY || '').trim();
+    const privateKey = (process.env.EMAILJS_PRIVATE_KEY || '').trim();
+
+    if (!serviceID || !templateID || !publicKey || !privateKey) {
+        console.error('[Email API] EmailJS 환경변수가 설정되지 않았습니다.');
+        return res.status(500).json({ success: false, error: '이메일 서비스가 설정되지 않았습니다.' });
+    }
+
+    try {
+        const origin = process.env.BASE_URL || 'https://doteline.co.kr';
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Origin': origin,
+                'User-Agent': 'Mozilla/5.0'
+            },
+            body: JSON.stringify({
+                service_id: serviceID,
+                template_id: templateID,
+                user_id: publicKey,
+                accessToken: privateKey,
+                template_params: {
+                    from_name: name,
+                    from_phone: phone,
+                    message: message,
+                    to_email: 'phyun7007@gmail.com'
+                }
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`EmailJS 응답 오류: ${response.status} - ${errorText}`);
+        }
+
+        logEvent(req, '문의 메일 전송 성공');
+        res.json({ success: true });
+    } catch (error) {
+        console.error('[Email API] 전송 실패:', error.message);
+        logEvent(req, `문의 메일 전송 실패: ${error.message}`);
+        res.status(500).json({ success: false, error: '이메일 전송에 실패했습니다.' });
+    }
 });
 
 module.exports = router;
