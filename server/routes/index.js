@@ -82,6 +82,13 @@ router.get('/solution', (req, res) => {
     sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
 });
 
+/**
+ * 작업 과정 페이지 (/work-process)
+ */
+router.get('/work-process', (req, res) => {
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'WorkProcess', 'WorkProcess.html'));
+});
+
 // ============================================
 // API 라우트
 // ============================================
