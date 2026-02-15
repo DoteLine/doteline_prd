@@ -220,6 +220,12 @@ window.handleContactFormSubmit = async function(form, isMobile) {
         return;
     }
 
+    const privacyCheckbox = form.querySelector('input[name="privacyAgree"]');
+    if (privacyCheckbox && !privacyCheckbox.checked) {
+        window.showMessage(messageDiv, '개인정보 수집·이용에 동의해주세요.', 'error');
+        return;
+    }
+
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 

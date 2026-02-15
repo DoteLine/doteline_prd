@@ -89,6 +89,13 @@ router.get('/work-process', (req, res) => {
     sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'WorkProcess', 'WorkProcess.html'));
 });
 
+/**
+ * 개인정보처리방침 페이지 (/privacy)
+ */
+router.get('/privacy', (req, res) => {
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'privacy.html'));
+});
+
 // ============================================
 // API 라우트
 // ============================================

@@ -522,16 +522,17 @@
   position: fixed;
   top: 70px;
   right: 1rem;
-  width: 380px;
+  width: 420px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 100;
   max-height: calc(100vh - 90px);
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -544,34 +545,56 @@
 .contact-dropdown-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  background: #020617;
+  border-radius: 20px 20px 0 0;
+}
+
+.contact-dropdown-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .contact-dropdown-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-dropdown-title svg {
+  opacity: 0.85;
+}
+
+.contact-dropdown-subtitle {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 400;
 }
 
 .contact-dropdown-close {
-  background: none;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   cursor: pointer;
-  color: #64748b;
-  transition: color 0.2s;
-  padding: 0.25rem;
+  color: #ffffff;
+  transition: all 0.2s;
+  padding: 0.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
+  margin-top: 0.125rem;
 }
 
 .contact-dropdown-close:hover {
-  color: #0f172a;
-  background: #f1f5f9;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ===============================================
@@ -581,8 +604,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -591,6 +614,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .contact-modal.active {
@@ -714,6 +738,12 @@
   transition: all 0.2s;
   font-family: inherit;
   color: #0f172a;
+  box-sizing: border-box;
+}
+
+.form-input:hover,
+.form-textarea:hover {
+  border-color: #94a3b8;
 }
 
 .form-input:focus,
@@ -743,10 +773,10 @@
 .form-submit-btn {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: #0f172a;
+  background: #020617;
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -755,10 +785,17 @@
   overflow: hidden;
 }
 
+.form-submit-btn .btn-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .form-submit-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.4);
-  background: #1e293b;
+  background: linear-gradient(135deg, #1e293b 0%, #25476e 100%);
 }
 
 .form-submit-btn:active {
@@ -804,4 +841,55 @@
   background: #fee2e2;
   color: #dc2626;
   border: 1px solid #fca5a5;
+}
+
+/* ===============================================
+   PRIVACY AGREEMENT
+   =============================================== */
+.privacy-agree {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.625rem;
+  padding: 0.875rem 1rem;
+}
+
+.privacy-agree-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.privacy-agree-label input[type="checkbox"] {
+  margin-top: 0.125rem;
+  width: 16px;
+  height: 16px;
+  accent-color: #0f172a;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.privacy-agree-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.privacy-link {
+  color: #3b82f6;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.privacy-link:hover {
+  color: #2563eb;
+}
+
+.privacy-agree-summary {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.375rem 0 0 1.5rem;
+  line-height: 1.5;
 }
