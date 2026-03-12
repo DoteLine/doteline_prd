@@ -18,13 +18,23 @@
   }
 
   /* Hero Section */
-  .hero-section {
-    margin-top: 70px;
-    min-height: 75vh;
+  .hero-led-display {
+    margin-top: 0;
+    height: 100vh;
   }
 
-  .hero-title {
-    font-size: 2.5rem;
+  #logo {
+    font-size: 3.5rem;
+    letter-spacing: 8px;
+  }
+
+  .hero-content-wrapper p {
+    margin-bottom: 2rem;
+  }
+
+  .hero-btn-primary {
+    padding: 0.875rem 2rem;
+    font-size: 0.9375rem;
   }
 
   .hero-subtitle {
@@ -284,14 +294,28 @@
   }
 
   /* Hero Section */
-  .hero-section {
-    margin-top: 60px;
-    min-height: 65vh;
+  .hero-led-display {
+    margin-top: 0;
+    height: 100vh;
     padding: 2rem 0;
   }
 
-  .hero-background {
-    background-size: cover;
+  #logo {
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+  }
+
+  .hero-content-wrapper p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
   }
 
   .hero-content {
@@ -677,8 +701,9 @@
    Fine-tuning for very small screens
    =============================================== */
 @media (max-width: 399px) {
-  .hero-title {
-    font-size: 1.625rem;
+  #logo {
+    font-size: 2rem;
+    letter-spacing: 3px;
   }
 
   .hero-subtitle {

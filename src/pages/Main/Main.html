@@ -37,8 +37,8 @@
 
     <!-- Kakao Map SDK -->
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c0674494f9d316051d412ea0ad6b82f&autoload=false"></script>
-<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0573bc51bef6b08b56bbf847f3afe06a&autoload=false"></script>-->
+    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c0674494f9d316051d412ea0ad6b82f&autoload=false"></script> -->
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0573bc51bef6b08b56bbf847f3afe06a&autoload=false"></script>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/src/components/Header/Header.css">
     <link rel="stylesheet" href="/src/components/Footer/Footer.css">
@@ -53,9 +53,16 @@
     <!-- Header Component -->
     <div id="header-container"></div>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-background"></div>
+    <!-- LED Display Style Hero Section (Isolated) -->
+    <section class="hero-led-display">
+        <div id="particles-js"></div>
+        <div class="hero-content-wrapper">
+            <h1 id="logo">DOTELINE</h1>
+            <p>Premium LED Display Technology</p>
+            <div class="hero-cta">
+                <a href="/src/pages/CompanyInfo/CompanyInfo.html" class="hero-btn-primary">What is DOTLINE?</a>
+            </div>
+        </div>
     </section>
 
     <!-- Second Hero Section -->
@@ -374,5 +381,8 @@
 <script src="/src/pages/Main/Main.js"></script>
 <script src="/src/components/Header/Header.js"></script>
 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="/src/pages/Main/particles-config.js"></script>
+<script src="/src/pages/Main/logo-animation.js"></script>
 </body>
 </html>
