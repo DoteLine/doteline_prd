@@ -3,29 +3,36 @@ function renderSolutions() {
   const solutionsContainer = document.getElementById('solutions-container');
   if (!solutionsContainer) return;
 
-  // 1~4번 솔루션 가져오기 (SolutionData.js에서 전역 함수 사용)
   const solutions = [1, 2, 3, 4].map(id => ({
     id,
     ...window.findSolutionById(id)
   }));
 
-  // 전체 래퍼 생성
   const solutionsHTML = `
     <section id="solutions" class="solutions-stack-wrapper">
       <div class="solutions-header">
         <h2 class="solutions-main-title">Explore Dotline's solution</h2>
-        <p class="solutions-main-description">다양한 산업 분야에 최적화된 도트라인의 LED 솔루션을 만나보세요. 옥외광고판, 렌탈 이벤트, 상업 소매, 회의실 등 고객의 니즈에 맞춘 맞춤형 디스플레이 솔루션을 제공합니다.</p>
+        <p class="solutions-main-description">다양한 산업 분야에 최적화된 도트라인의 LED 솔루션을 만나보세요.</p>
+        
+        <div class="solutions-indicator">
+          ${solutions.map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}" data-target="${i}"></span>`).join('')}
+        </div>
       </div>
+
       <div class="solutions-stack-container">
         ${solutions.map((solution, index) => `
-          <div class="solution-card-stack" data-index="${index}" style="--index: ${index};">
+          <div class="solution-card-stack" data-index="${index}" 
+               style="--index: ${index}; --total: ${solutions.length};">
             <div class="solution-card-stack__inner">
               <div class="solution-card-stack__image">
                 <img src="${solution.thumbnail}" alt="${solution.headline}" loading="lazy">
+                <div class="image-overlay"></div>
               </div>
               <div class="solution-card-stack__content">
-                <span class="solution-card-stack__label">${solution.label}</span>
-                <h2 class="solution-card-stack__title">${solution.headline}</h2>
+                <div class="content-top">
+                  <span class="solution-card-stack__label">${solution.label}</span>
+                  <h2 class="solution-card-stack__title">${solution.headline}</h2>
+                </div>
                 <p class="solution-card-stack__description">${solution.description}</p>
                 <a href="/src/pages/Solutions/SolutionDetail.html?id=${solution.id}" class="solution-card-stack__cta">
                   <span>자세히 보기</span>
@@ -115,23 +122,23 @@ function initSmoothScroll() {
 
 // 기능 초기화 함수를 별도로 분리
 async function setupMainPage() {
-    // StoreSection 컴포넌트 로드
-    await loadComponent('StoreSection', 'storeLocation-container');
+  // StoreSection 컴포넌트 로드
+  await loadComponent('StoreSection', 'storeLocation-container');
 
-    // 솔루션 섹션 먼저 렌더링
-    renderSolutions();
+  // 솔루션 섹션 먼저 렌더링
+  renderSolutions();
 
-    // 렌더링 완료 후 애니메이션 및 기타 기능 초기화
-    setTimeout(() => {
-        initScrollAnimation();
-        initSmoothScroll();
-    }, 100);
+  // 렌더링 완료 후 애니메이션 및 기타 기능 초기화
+  setTimeout(() => {
+    initScrollAnimation();
+    initSmoothScroll();
+  }, 100);
 }
 
 // DOM이 준비되면 실행
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupMainPage);
+  document.addEventListener('DOMContentLoaded', setupMainPage);
 } else {
-    // DOM이 이미 준비된 경우 즉시 실행
-    setupMainPage();
+  // DOM이 이미 준비된 경우 즉시 실행
+  setupMainPage();
 }
